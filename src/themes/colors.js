@@ -3,9 +3,10 @@ const Color = {
   title: '#A64244',
   background: '#f6c7b9',
   green: '#a7bcf4',
-  but: '#a7f4df',
+  but: '#a7e2f4',
   border: '#4C6F62',
-  text: '#75260e',
+  text: '#f4b9a7',
+  titleBut: '#F4B9A7',
 
   //************ */
     //main color

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-dupe-keys */
 /* eslint-disable react-native/no-inline-styles */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Image,
+  Dimensions,
 } from 'react-native';
 import LoginTypes from '../../../redux/Auth/Login/actions';
 import { validateEmail } from '../../../utils/ReduxUtils';
@@ -17,14 +18,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import InputItem from '../../../component/register/inputItem';
 import Images from '../../../themes/images';
 import { loginScreen, registerScreen } from '../../../navigation/pushScreens';
+import Color from '../../../themes/colors';
+import { Navigation } from 'react-native-navigation';
+const screenWidth = Dimensions.get('screen').width;
+const screenHeight = Dimensions.get('screen').height;
 
-const Login = () => {
+const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [hidenVal] = useState(false);
 
   const dispatch = useDispatch();
-
   onSignUp = () => {
     console.log(2);
     registerScreen();
@@ -47,10 +51,8 @@ const Login = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <Image source={Images.imgCancel} style={styles.closeForm} />
         <Text style={styles.formName}>Đăng nhập</Text>
       </View>
-
       <View style={styles.logoForm}>
         <Image source={Images.logo} style={styles.logo} />
       </View>
@@ -71,36 +73,33 @@ const Login = () => {
           onChangeText={(val) => setPassword(val)}
         />
       </View>
+      <TouchableOpacity style={styles.forgotPassButton} onPress={() => onForgotPassword()}>
+        <Text style={{ color: 'red' }}>Quên Mật Khẩu</Text>
+      </TouchableOpacity>
 
       <View style={{ alignItems: 'center' }}>
         <TouchableOpacity style={styles.loginButton} onPress={() => onLogin()}>
-          <Text style={{ textAlign: 'center' }}>Đăng nhập</Text>
+          <Text style={styles.titleBut}>Đăng nhập</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.button}>
+        <Text>Chưa có tài khoản?</Text>
         <TouchableOpacity style={styles.registerButton} onPress={() => onSignUp()}>
-          <Text style={{ color: 'white', textAlign: 'center' }}>Đăng ký</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.forgotPassButton} onPress={() => onForgotPassword()}>
-          <Text style={{ color: 'white', textAlign: 'center' }}>Quên Mật Khẩu</Text>
+          <Text style={styles.titleBut}>Đăng ký</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
   );
 };
-Login.options = {
-  topBar: {
-    visible: true,
-  },
-};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 50,
+    // marginTop: 50,
     paddingVertical: 10,
     paddingHorizontal: 30,
     backgroundColor: 'white',
+    alignContent: 'center',
   },
   header: {
     flexDirection: 'row',
@@ -123,14 +122,15 @@ const styles = StyleSheet.create({
   },
   button: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     marginTop: 20,
+    alignItems: 'center',
   },
   loginButton: {
-    backgroundColor: '#00ccff',
-    borderColor: '#00ccff',
+    backgroundColor: Color.but,
+    borderColor: Color.but,
     borderWidth: 1,
-    width: 140,
+    width: screenWidth / 1.5,
     height: 50,
     justifyContent: 'center',
     alignContent: 'center',
@@ -138,26 +138,18 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   registerButton: {
-    backgroundColor: '#41B8C1',
-    borderColor: '#41B8C1',
-    borderWidth: 1,
-    borderRadius: 15,
-    width: 140,
-    height: 50,
+    height: 20,
     justifyContent: 'center',
-    alignContent: 'center',
-    marginLeft: 5,
+    // alignContent: 'center',
+    marginLeft: 4,
+    // backgroundColor: '#1ab2ff',
+    // borderColor: '#1ab2ff',
+    // borderWidth: 1,
+    // borderRadius: 15,
   },
   forgotPassButton: {
-    backgroundColor: '#1ab2ff',
-    borderColor: '#1ab2ff',
-    borderWidth: 1,
-    borderRadius: 15,
-    width: 140,
-    height: 50,
-    justifyContent: 'center',
-    alignContent: 'center',
-    marginLeft: 5,
+    color: 'red',
+    // marginLeft: 5,
   },
   closeForm: {
     width: 15,
@@ -165,14 +157,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   logo: {
-    width: 200,
-    height: 200,
+    width: 100,
+    height: 100,
   },
   logoForm: {
     alignItems: 'center',
   },
   formName: {
-    fontSize: 30,
+    fontSize: 24,
     alignContent: 'center',
     textAlign: 'center',
     width: '100%',
@@ -206,6 +198,11 @@ const styles = StyleSheet.create({
     height: 15,
     marginLeft: 310,
     marginTop: 30,
+  },
+  titleBut: {
+    textAlign: 'center',
+    color: 'black',
+    fontWeight: 'bold',
   },
 });
 

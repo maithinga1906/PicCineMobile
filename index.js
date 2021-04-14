@@ -28,5 +28,5 @@ Navigation.registerComponent('Intro', () => Intro);
 
 Navigation.events().registerAppLaunchedListener(async () => {
   //const start = await AsyncStorage.getItem('start');
-  homeScreen();
+  loginScreen();
 });
