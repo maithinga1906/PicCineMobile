@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -16,6 +16,7 @@ const screenWidth = Dimensions.get('screen').width;
 import Head from './head';
 
 const Profile = () => {
+
   return (
     <ScrollView style={{backgroundColor: 'white'}}>
       <Head />
