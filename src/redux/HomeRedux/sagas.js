@@ -19,11 +19,8 @@ export function* getHomeSaga() {
 export function* getTypesSaga() {
   try {
     const response = yield call(photographerRecommendationApi);
-    const newResponse = {
-      data: response.data,
-    };
-    console.log(response.data);
-    yield put(HomeActions.getRecommendationHomeSuccess(newResponse));
+    console.log('b: ', response);
+    yield put(HomeActions.getRecommendationHomeSuccess(response.data.recommendation));
   } catch (error) {
     console.log(error);
     yield put(HomeActions.getRecommendationHomeFailure(error));

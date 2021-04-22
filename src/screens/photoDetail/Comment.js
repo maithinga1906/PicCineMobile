@@ -24,7 +24,7 @@ export default class Comment extends React.Component {
     return (
       <ScrollView style={{ backgroundColor: 'white' }}>
         <Info />
-        <View style={{ borderBottomColor: 'black', flexDirection: 'row' }}>
+        <View style={{ borderBottomColor: 'black', flexDirection: 'row', height: 60, margin: 10, width: screenWidth, alignItems: 'center' }}>
           <Image
             source={Images.model1}
             style={{
@@ -32,8 +32,42 @@ export default class Comment extends React.Component {
               height: 40,
               borderRadius: 15,
               marginRight: 20,
-              alignItems: 'center',
-              justifyContent: 'center',
+            }}
+          />
+          <Text>Chụp hình rất đẹp vote 10*</Text>
+        </View>
+        <View style={{ borderBottomColor: 'black', flexDirection: 'row', height: 60, margin: 10, width: screenWidth, alignItems: 'center' }}>
+          <Image
+            source={Images.model1}
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: 15,
+              marginRight: 20,
+            }}
+          />
+          <Text>Chụp hình rất đẹp vote 10*</Text>
+        </View>
+        <View style={{ borderBottomColor: 'black', flexDirection: 'row', height: 60, margin: 10, width: screenWidth, alignItems: 'center' }}>
+          <Image
+            source={Images.model2}
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: 15,
+              marginRight: 20,
+            }}
+          />
+          <Text>Chụp hình rất đẹp vote 10*</Text>
+        </View>
+        <View style={{ borderBottomColor: 'black', flexDirection: 'row', height: 60, margin: 10, width: screenWidth, alignItems: 'center' }}>
+          <Image
+            source={Images.model3}
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: 15,
+              marginRight: 20,
             }}
           />
           <Text>Chụp hình rất đẹp vote 10*</Text>

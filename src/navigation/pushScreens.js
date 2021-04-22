@@ -167,7 +167,7 @@ export const homeScreen = () => {
                         name: 'Profile',
                         options: {
                           topBar: {
-                            visible: false,
+                            visible: true,
                           },
                           bottomTab: {
                             text: 'Tôi',
@@ -199,6 +199,12 @@ export const serviceScreen = () => {
               options: {
                 topBar: {
                   visible: true,
+                  backButton: {
+                    //55
+                    id: 'BACK',
+                    //55
+                    visible: true,
+                  },
                 },
               },
             },
@@ -219,10 +225,6 @@ export const detailScreen = () => {
               options: {
                 topBar: {
                   visible: true,
-                  backButton: {
-                    id: 'backButton',
-                    icon: Icons.back,
-                  },
                   height: 10,
                 },
               },
@@ -265,7 +267,7 @@ export const commentScreen = () => {
               name: 'Comment',
               options: {
                 topBar: {
-                  visible: false,
+                  visible: true,
                 },
               },
             },
@@ -285,7 +287,7 @@ export const infoScreen = () => {
               name: 'Info',
               options: {
                 topBar: {
-                  visible: false,
+                  visible: true,
                 },
               },
             },

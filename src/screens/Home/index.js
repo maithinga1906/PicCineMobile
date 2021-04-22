@@ -19,6 +19,7 @@ import Swiper from 'react-native-swiper';
 import { serviceScreen } from '../../navigation/pushScreens';
 import { useDispatch, useSelector } from 'react-redux';
 import HomeActions from '../../redux/HomeRedux/actions';
+import { map } from 'lodash';
 const screenWidth = Dimensions.get('screen').width;
 
 const Homepage = () => {
@@ -26,8 +27,16 @@ const Homepage = () => {
   useEffect(() => {
     dispatch(HomeActions.getPopularHome());
   }, []);
-  const popular = useSelector((state) => state.homeReducer.dataPopular);
-  console.log(popular);
+
+  useEffect(() => {
+    dispatch(HomeActions.getRecommendationHome());
+  }, []);
+
+  const populars = useSelector((state) => state.homeReducer.dataPopular);
+  console.log('p', populars);
+
+  const recommendation = useSelector((state) => state.homeReducer.dataRecommendation);
+  console.log('r', recommendation);
   return (
     <ScrollView style={styles.container}>
       <View style={styles.topBar}>
@@ -85,21 +94,30 @@ const Homepage = () => {
 
       <Text style={styles.subTitle}>Phổ Biến</Text>
       <ScrollView style={styles.popular} horizontal={true}>
-        <TouchableOpacity style={styles.popularPhotographer} onPress={() => serviceScreen()}>
+      {/* {populars?.map((popular, index ) => {
+        TouchableOpacity style={styles.popularPhotographer} onPress={() => serviceScreen()}>
           <Image
             source={Images.nag1}
             style={{ width: screenWidth / 3, height: screenWidth / 3, borderRadius: 10 }}
           />
+          <Text style={styles.name}>{popular.username}</Text>
+        </TouchableOpacity>
+      })} */}
+      <TouchableOpacity style={styles.popularPhotographer} onPress={() => serviceScreen()}>
+          <Image source={Images.nag1} style={{ width: screenWidth / 3, height: screenWidth / 3, borderRadius: 10 }} />
           <Text style={styles.name}>Nguyễn Văn Hùng</Text>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.popularPhotographer} onPress={() => serviceScreen()}>
-          <Image source={Images.nag1} style={{ width: screenWidth / 3, height: screenWidth / 3 }} />
+          <Image source={Images.nag1} style={{ width: screenWidth / 3, height: screenWidth / 3, borderRadius: 10 }} />
           <Text style={styles.name}>Nguyễn Văn Hùng</Text>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.popularPhotographer} onPress={() => serviceScreen()}>
-          <Image source={Images.nag2} style={{ width: screenWidth / 3, height: screenWidth / 3 }} />
+          <Image source={Images.nag2} style={{ width: screenWidth / 3, height: screenWidth / 3, borderRadius: 10 }} />
           <Text style={styles.name}>Nguyễn Văn Hùng</Text>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.popularPhotographer} onPress={() => serviceScreen()}>
           <Image source={Images.nag1} style={{ width: screenWidth / 3, height: screenWidth / 3 }} />
           <Text style={styles.name}>Nguyễn Văn Hùng</Text>
@@ -229,6 +247,7 @@ const styles = StyleSheet.create({
   imagePhoto: {
     width: screenWidth / 3,
     height: screenWidth / 3,
+    borderRadius: 10,
   },
   subTitle: {
     fontSize: 20,

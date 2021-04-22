@@ -21,7 +21,7 @@ const screenWidth = Dimensions.get('screen').width;
 export default class Detail extends React.Component {
   render() {
     return (
-      <ScrollView style={{backgroundColor: 'white'}}>
+      <ScrollView style={{backgroundColor: 'white', width: screenWidth}}>
         <Image source={Images.model1} style={styles.image} />
 
         <View style={styles.info}>
@@ -29,7 +29,7 @@ export default class Detail extends React.Component {
           <Text>Chụp tại studio / ngoại cảnh</Text>
         </View>
 
-        <View style={styles.detail}>
+        <ScrollView style={styles.detail}>
           <View style={styles.nag}>
             <Image source={Images.nag2} style={styles.imageNag} />
             <Text style={styles.nameNag}>Moon Thuc</Text>
@@ -40,7 +40,20 @@ export default class Detail extends React.Component {
             </Text>
             <Image source={Images.model2} style={styles.demo} />
           </View>
-        </View>
+          <View style={styles.detail1}>
+            <Text style={styles.status}>
+              "Hình ảnh đẹp"
+            </Text>
+            <Image source={Images.model3} style={styles.demo} />
+          </View>
+          <View style={styles.detail1}>
+            <Text style={styles.status}>
+              "Hình ảnh đẹp"
+            </Text>
+            <Image source={Images.model3} style={styles.demo} />
+          </View>
+        </ScrollView>
+        
       </ScrollView>
     );
   }
@@ -57,6 +70,8 @@ Detail.options = {
       //55
       visible: true,
     },
+
+    height: 10,
   },
 };
 
@@ -69,6 +84,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Color.background,
+    margin: 20,
   },
   nag: {
     flexDirection: 'row',
@@ -94,11 +110,11 @@ const styles = StyleSheet.create({
   },
   detail: {
 	width: screenWidth - 50,
-	height: screenWidth + 50,
 	backgroundColor: '#EDE7E7',
+  margin: 20,
   },
   status: {
 	alignItems: 'center',
-	textAlign: 'center'
+	textAlign: 'center',
   },
 });
