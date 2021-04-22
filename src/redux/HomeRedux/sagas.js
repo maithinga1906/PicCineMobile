@@ -8,12 +8,8 @@ import { photographerPopularApi, photographerRecommendationApi } from '../../api
 export function* getHomeSaga() {
   try {
     const response = yield call(photographerPopularApi);
-    const newResponse = {
-      data: response,
-    };
     console.log('a: ', response);
-    yield put(HomeActions.getPopularHomeFailure(newResponse));
-    yield homeScreen();
+    yield put(HomeActions.getPopularHomeSuccess(response.data.popular));
   } catch (error) {
     console.log(error);
     yield put(HomeActions.getPopularHomeFailure(error));

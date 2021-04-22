@@ -22,16 +22,25 @@ const screenWidth = Dimensions.get('screen').width;
 export default class Comment extends React.Component {
   render() {
     return (
-      <ScrollView>
-       <Info/>
+      <ScrollView style={{ backgroundColor: 'white' }}>
+        <Info />
+        <View style={{ borderBottomColor: 'black', flexDirection: 'row' }}>
+          <Image
+            source={Images.model1}
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: 15,
+              marginRight: 20,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          />
+          <Text>Chụp hình rất đẹp vote 10*</Text>
+        </View>
       </ScrollView>
     );
   }
 }
-Comment.options = {
-    topBar: {
-      height: 0,
-    },
-  };
 
 const styles = StyleSheet.create({});

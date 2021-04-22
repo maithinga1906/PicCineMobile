@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -17,11 +17,15 @@ import Icons from '../../themes/icons';
 import Swiper from 'react-native-swiper';
 // import { NavigationUtils } from '../../navigation';
 import { serviceScreen } from '../../navigation/pushScreens';
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import HomeActions from '../../redux/HomeRedux/actions';
 const screenWidth = Dimensions.get('screen').width;
 
 const Homepage = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(HomeActions.getPopularHome());
+  }, []);
   const popular = useSelector((state) => state.homeReducer.dataPopular);
   console.log(popular);
   return (
