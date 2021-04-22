@@ -1,7 +1,5 @@
 import { Navigation } from 'react-native-navigation';
-import Login from '../screens/Authentic/Login/Login';
 import Icons from '../themes/icons';
-import { registerScreens } from './registerScreens';
 export const pushScreen = (
   componentId,
   screenApp,
@@ -200,7 +198,7 @@ export const serviceScreen = () => {
               name: 'Service',
               options: {
                 topBar: {
-                  visible: false,
+                  visible: true,
                 },
               },
             },
@@ -220,7 +218,12 @@ export const detailScreen = () => {
               name: 'Detail',
               options: {
                 topBar: {
-                  visible: false,
+                  visible: true,
+                  backButton: {
+                    id: 'backButton',
+                    icon: Icons.back,
+                  },
+                  height: 10,
                 },
               },
             },
@@ -239,6 +242,47 @@ export const registerScreen = () => {
           {
             component: {
               name: 'Register',
+              options: {
+                topBar: {
+                  visible: false,
+                },
+              },
+            },
+          },
+        ],
+      },
+    },
+  });
+};
+
+export const commentScreen = () => {
+  Navigation.setRoot({
+    root: {
+      stack: {
+        children: [
+          {
+            component: {
+              name: 'Comment',
+              options: {
+                topBar: {
+                  visible: false,
+                },
+              },
+            },
+          },
+        ],
+      },
+    },
+  });
+};
+export const infoScreen = () => {
+  Navigation.setRoot({
+    root: {
+      stack: {
+        children: [
+          {
+            component: {
+              name: 'Info',
               options: {
                 topBar: {
                   visible: false,

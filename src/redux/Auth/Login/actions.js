@@ -1,22 +1,3 @@
-// import * as LoginTypes from './actionType';
-
-// export const login = (data) => ({
-//   type: LoginTypes.LOGIN,
-//   payload: data,
-// });
-// export const loginSuccess = (response, token) => ({
-//   type: LoginTypes.LOGIN_SUCCESS,
-//   payload: response,
-//   token: token,
-// });
-// export const loginFail = (error) => ({
-//   type: LoginTypes.LOGIN_FAIL,
-//   payload: error,
-// });
-// // export const logout = () => ({
-// //   type: LoginTypes.LOGOUT,
-// // });
-
 import { makeActionCreator, makeConstantCreator } from '../../../utils/ReduxUtils';
 
 export const LoginTypes = makeConstantCreator(
@@ -24,7 +5,18 @@ export const LoginTypes = makeConstantCreator(
   'USER_LOGIN_SUCCESS',
   'USER_LOGIN_FAILURE',
   'USER_LOGOUT',
+
+  'USER_INFO',
+  'USER_INFO_SUCCESS',
+  'USER_INFO_FAILURE',
 );
+
+const getInfoUser = () => makeActionCreator(LoginTypes.USER_INFO);
+const getInfoUserSuccess = (response) =>
+  makeActionCreator(LoginTypes.USER_INFO_SUCCESS, { response });
+const getInfoUserFailure = (error) => makeActionCreator(LoginTypes.USER_INFO_FAILURE, { error });
+
+/************************************************** */
 
 const userLogin = (data) => makeActionCreator(LoginTypes.USER_LOGIN, { data });
 const userLoginSuccess = (response) =>
@@ -34,5 +26,5 @@ export default {
   userLogin,
   userLoginSuccess,
   userLoginFailure,
+  getInfoUser,
 };
-

@@ -23,10 +23,9 @@ import { introScreen, homeScreen, loginScreen, registerScreen } from './src/navi
 import Intro from './src/screens/Authentic/Intro/Intro';
 registerScreens();
 
-Navigation.registerComponent('app', () => App);
 Navigation.registerComponent('Intro', () => Intro);
 
 Navigation.events().registerAppLaunchedListener(async () => {
   //const start = await AsyncStorage.getItem('start');
-  loginScreen();
+  introScreen();
 });

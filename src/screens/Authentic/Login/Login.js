@@ -17,7 +17,7 @@ import { validateEmail } from '../../../utils/ReduxUtils';
 import { useSelector, useDispatch } from 'react-redux';
 import InputItem from '../../../component/register/inputItem';
 import Images from '../../../themes/images';
-import { loginScreen, registerScreen } from '../../../navigation/pushScreens';
+import { registerScreen } from '../../../navigation/pushScreens';
 import Color from '../../../themes/colors';
 import { Navigation } from 'react-native-navigation';
 const screenWidth = Dimensions.get('screen').width;
@@ -95,15 +95,16 @@ const Login = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // marginTop: 50,
     paddingVertical: 10,
     paddingHorizontal: 30,
     backgroundColor: 'white',
     alignContent: 'center',
+    paddingTop: 100,
   },
   header: {
     flexDirection: 'row',
     marginTop: 0,
+    marginBottom: 40,
   },
   main: {
     alignContent: 'center',
@@ -140,16 +141,10 @@ const styles = StyleSheet.create({
   registerButton: {
     height: 20,
     justifyContent: 'center',
-    // alignContent: 'center',
     marginLeft: 4,
-    // backgroundColor: '#1ab2ff',
-    // borderColor: '#1ab2ff',
-    // borderWidth: 1,
-    // borderRadius: 15,
   },
   forgotPassButton: {
     color: 'red',
-    // marginLeft: 5,
   },
   closeForm: {
     width: 15,

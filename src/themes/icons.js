@@ -20,5 +20,7 @@ const Icons = {
     star2: require('../assets/Images/icon/star2.png'),
     next: require('../assets/Images/icon/next.png'),
     pen: require('../assets/Images/icon/pen.png'),
+    eye: require('../assets/Images/icon/visibility.png'),
+    eye1: require('../assets/Images/icon/visibility1.png'),
   };
   export default Icons;

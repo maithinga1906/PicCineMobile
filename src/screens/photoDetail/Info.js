@@ -18,11 +18,10 @@ import Color from '../../themes/colors';
 import Icons from '../../themes/icons';
 import Swiper from 'react-native-swiper';
 import { useWindowDimensions } from 'react-native';
-// import { serviceScreen, commentScreen, detailScreen } from '../../navigation/pushScreen';
+import { commentScreen, serviceScreen } from '../../navigation/pushScreens';
 const screenWidth = Dimensions.get('screen').width;
 const screenHeight = Dimensions.get('screen').height;
 //***************************0 */
-
 export default function Info() {
   return (
     <View>
@@ -49,24 +48,27 @@ export default function Info() {
       </View>
 
       <View style={styles.tab}>
-          <TouchableOpacity style={styles.tabView} 
-          // onPress={() => NavigationUtils.serviceContent()}
-          >
-              <Image source={Icons.camera}/>
-              <Text>Dịch vụ</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.tabView} 
-          // onPress={() =>  NavigationUtils.commentContent()}
-          >
-              <Image source={Icons.cmt}/>
-              <Text>Dịch vụ</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.tabView} 
+        <TouchableOpacity
+          style={styles.tabView}
+          onPress={() => serviceScreen()}
+        >
+          <Image source={Icons.camera} />
+          <Text>Dịch vụ</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.tabView}
+          onPress={() =>  commentScreen()}
+        >
+          <Image source={Icons.cmt} />
+          <Text>Bình luận</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.tabView}
           // onPress={() =>  NavigationUtils.detailContent()}
-          >
-              <Image source={Icons.camera}/>
-              <Text>Dịch vụ</Text>
-          </TouchableOpacity>
+        >
+          <Image source={Icons.camera} />
+          <Text>Voucher</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -81,7 +83,7 @@ const styles = StyleSheet.create({
   container: {
     width: screenWidth,
     height: screenHeight / 2,
-   backgroundColor: 'white',
+    backgroundColor: 'white',
   },
   image: {
     flex: 1,
@@ -101,12 +103,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   tabView: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: screenWidth / 3,
-      height: 50,
-      backgroundColor: Color.background,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: screenWidth / 3,
+    height: 50,
+    backgroundColor: Color.background,
   },
   tabHover: {
     flexDirection: 'row',
@@ -115,5 +117,5 @@ const styles = StyleSheet.create({
     width: screenWidth / 3,
     height: 50,
     backgroundColor: Color.green,
-},
+  },
 });

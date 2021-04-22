@@ -20,64 +20,63 @@ import Info from './Info';
 import { detailScreen } from '../../navigation/pushScreens';
 const screenWidth = Dimensions.get('screen').width;
 
-
 export default class Service extends React.Component {
   render() {
     return (
-      <ScrollView style={{backgroundColor: 'white'}}>
-        <Info/>
-       <TouchableOpacity style={styles.container} onPress={() => detailScreen()}>
-         <Image source={Images.model1}  style={styles.image}/>
-         <View style={styles.info}>
+      <ScrollView style={{ backgroundColor: 'white' }}>
+        <Info />
+        <TouchableOpacity style={styles.container} onPress={() => detailScreen()}>
+          <Image source={Images.model1} style={styles.image} />
+          <View style={styles.info}>
             <Text style={styles.title}>Chụp hình cổ phong</Text>
             <View>
               <Text>100.000₫ / 1h </Text>
-            <Text>Chụp tại studio / ngoại cảnh</Text>
+              <Text>Chụp tại studio / ngoại cảnh</Text>
             </View>
-         </View>
-       </TouchableOpacity>
+          </View>
+        </TouchableOpacity>
 
-       <TouchableOpacity style={styles.container} onPress={() => detailScreen()}>
-         <Image source={Images.model2}  style={styles.image}/>
-         <View style={styles.info}>
+        <TouchableOpacity style={styles.container} onPress={() => detailScreen()}>
+          <Image source={Images.model2} style={styles.image} />
+          <View style={styles.info}>
             <Text style={styles.title}>Chụp hình cổ phong</Text>
             <View>
               <Text>100.000₫ / 1h </Text>
-            <Text>Chụp tại studio / ngoại cảnh</Text>
+              <Text>Chụp tại studio / ngoại cảnh</Text>
             </View>
-         </View>
-       </TouchableOpacity>
+          </View>
+        </TouchableOpacity>
 
-       <TouchableOpacity style={styles.container} onPress={() => detailScreen()}>
-         <Image source={Images.model3}  style={styles.image}/>
-         <View style={styles.info}>
+        <TouchableOpacity style={styles.container} onPress={() => detailScreen()}>
+          <Image source={Images.model3} style={styles.image} />
+          <View style={styles.info}>
             <Text style={styles.title}>Chụp hình cổ phong</Text>
             <View>
               <Text>100.000₫ / 1h </Text>
-            <Text>Chụp tại studio / ngoại cảnh</Text>
+              <Text>Chụp tại studio / ngoại cảnh</Text>
             </View>
-         </View>
-       </TouchableOpacity>
+          </View>
+        </TouchableOpacity>
 
-       <TouchableOpacity style={styles.container} onPress={() => detailScreen()}>
-         <Image source={Images.model4}  style={styles.image}/>
-         <View style={styles.info}>
+        <TouchableOpacity style={styles.container} onPress={() => detailScreen()}>
+          <Image source={Images.model4} style={styles.image} />
+          <View style={styles.info}>
             <Text style={styles.title}>Chụp hình cổ phong</Text>
             <View>
               <Text>100.000₫ / 1h </Text>
-            <Text>Chụp tại studio / ngoại cảnh</Text>
+              <Text>Chụp tại studio / ngoại cảnh</Text>
             </View>
-         </View>
-       </TouchableOpacity>
+          </View>
+        </TouchableOpacity>
       </ScrollView>
     );
   }
 }
-Service.options = {
-    topBar: {
-      height: 0,
-    },
-  };
+// Service.options = {
+//   topBar: {
+//     visible: true,
+//   },
+// };
 
 const styles = StyleSheet.create({
   container: {

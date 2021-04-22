@@ -1,6 +1,7 @@
+/* eslint-disable no-lone-blocks */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-import React, { useEffect, useState } from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -13,39 +14,34 @@ import {
 import Icons from '../../themes/icons';
 import Images from '../../themes/images';
 const screenWidth = Dimensions.get('screen').width;
+import { useSelector } from 'react-redux';
 import Head from './head';
 
 const Profile = () => {
-
+  const user = useSelector((state) => state.login.loginResponse);
   return (
-    <ScrollView style={{backgroundColor: 'white'}}>
+    <ScrollView style={{ backgroundColor: 'white' }}>
       <Head />
       <View style={styles.content}>
         <View style={styles.info}>
           <Text style={styles.title}>Tên đăng nhập </Text>
-          <Text style={styles.detail}>Sunny</Text>
+          <Text style={styles.detail}>{user.username}</Text>
         </View>
 
         <View style={styles.info}>
           <Text style={styles.title}>Email </Text>
-          <Text>sunny@gmail.com</Text>
-        </View>
-
-        <View style={styles.info}>
-          <Text style={styles.title}>Giới tính </Text>
-          <Text>nữ</Text>
+          <Text>{user.email}</Text>
         </View>
 
         <View style={styles.info}>
           <Text style={styles.title}>Số điện thoại </Text>
-          <Text>0123456789</Text>
+          <Text>{user.phone}</Text>
         </View>
 
         <View style={styles.info}>
           <Text style={styles.title}>Ngày sinh </Text>
           <Text>18/05/2000</Text>
         </View>
-
       </View>
     </ScrollView>
   );
@@ -53,7 +49,7 @@ const Profile = () => {
 
 export default Profile;
 const styles = StyleSheet.create({
-  content:{
+  content: {
     flex: 1,
     padding: 15,
   },
@@ -66,5 +62,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  title: {fontWeight: 'bold'}
+  title: { fontWeight: 'bold' },
 });

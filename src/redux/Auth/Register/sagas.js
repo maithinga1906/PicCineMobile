@@ -4,6 +4,7 @@ import { userRegisterFailure, userRegisterSuccess, RegisterTypes } from './actio
 import { startup } from '../../AppRedux/actions';
 import { userRegisterApi } from '../../../api/auth';
 import { homeScreen } from '../../../navigation/pushScreens';
+
 export function* userRegisterSaga({ data }) {
   console.log(data);
   try {
