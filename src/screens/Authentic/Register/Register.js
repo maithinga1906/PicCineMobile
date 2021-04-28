@@ -35,8 +35,6 @@ const SignUp = () => {
       const data = {
         username: username,
         password: password,
-        id_role: 2,
-        phone: phone,
         email: email,
       };
       dispatch(userRegister(data));

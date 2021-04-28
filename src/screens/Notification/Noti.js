@@ -19,7 +19,7 @@ const Noti = () => {
           <Text >Từ nhiếp ảnh gia Ưu Vô </Text>
           <Text style={styles.time}><Image source={Icons.time} /> 13:00 23-03-2021</Text>
           </View>
-          <Image style={{margin: 15,}} source={Icons.next} />
+          <Image style={{margin: 15}} source={Icons.next} />
         </View>
       </TouchableOpacity>
 
@@ -31,7 +31,7 @@ const Noti = () => {
             <Text >Từ nhiếp ảnh gia Ưu Vô </Text>
             <Text style={styles.time}><Image source={Icons.time} /> 13:00 23-03-2021</Text>
           </View>
-            <Image style={{margin: 15,}} source={Icons.next} />
+            <Image style={{margin: 15}} source={Icons.next} />
         </View>
       </TouchableOpacity>
     </ScrollView>
@@ -41,19 +41,19 @@ const Noti = () => {
 export default Noti;
 const styles = StyleSheet.create({
 img:{
-  width: screenWidth /4 ,
+  width: screenWidth / 4 ,
   height:55,
-  borderRadius:5
+  borderRadius:5,
 },
 content:{
-  flexDirection: 'row', 
+  flexDirection: 'row',
   fontSize:16,
   padding: 10,
   borderBottomColor: '#A64244',
   borderBottomWidth: 1,
-  paddingBottom: 15
+  paddingBottom: 15,
 },
 time:{
-  opacity:0.5
-}
+  opacity:0.5,
+},
 });

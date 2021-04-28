@@ -13,13 +13,12 @@ import {
   Dimensions,
 } from 'react-native';
 import LoginTypes from '../../../redux/Auth/Login/actions';
-import { validateEmail } from '../../../utils/ReduxUtils';
-import { useSelector, useDispatch } from 'react-redux';
 import InputItem from '../../../component/register/inputItem';
 import Images from '../../../themes/images';
 import { registerScreen } from '../../../navigation/pushScreens';
 import Color from '../../../themes/colors';
 import { Navigation } from 'react-native-navigation';
+import { useDispatch } from 'react-redux';
 const screenWidth = Dimensions.get('screen').width;
 const screenHeight = Dimensions.get('screen').height;
 
@@ -30,7 +29,6 @@ const Login = (props) => {
 
   const dispatch = useDispatch();
   onSignUp = () => {
-    console.log(2);
     registerScreen();
   };
 
@@ -42,11 +40,7 @@ const Login = (props) => {
     dispatch(LoginTypes.userLogin(data));
   };
 
-  onForgotPassword = () => {
-    NavigationUtils.push({
-      screen: 'ForgotPassword',
-    });
-  };
+  onForgotPassword = () => {};
 
   return (
     <ScrollView style={styles.container}>
@@ -57,10 +51,16 @@ const Login = (props) => {
         <Image source={Images.logo} style={styles.logo} />
       </View>
 
-      <InputItem value={'Email*'} styles={styles.textInput} onChangeText={(val) => setEmail(val)} />
+      <InputItem
+        value={'Username'}
+        styles={styles.textInput}
+        onChangeText={(val) => setEmail(val)}
+      />
 
       <View>
-        <Text>Mật khẩu *</Text>
+        <Text>
+          Mật khẩu<Text style={{ color: 'red' }}>*</Text>
+        </Text>
         <TouchableOpacity>
           <Image
             source={hidenVal ? Images.imgShowPwd : Images.imgNotShowPwd}

@@ -22,6 +22,7 @@ import Head from '../screens/Profile/head';
 import Profile from '../screens/Profile/Profile';
 import QR from '../screens/Profile/QR';
 import Wishlist from '../screens/Wishlist';
+import SetSchedule from '../screens/Booking/SetSchedule';
 
 function ReduxProvider(Component) {
   return (props) => (
@@ -126,5 +127,10 @@ export function registerScreens() {
     'Wishlist',
     () => ReduxProvider(Wishlist),
     () => Wishlist,
+  );
+  Navigation.registerComponent(
+    'SetSchedule',
+    () => ReduxProvider(SetSchedule),
+    () => SetSchedule,
   );
 }

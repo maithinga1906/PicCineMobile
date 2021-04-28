@@ -16,10 +16,15 @@ import {
 import Images from '../../themes/images';
 import Color from '../../themes/colors';
 import Icons from '../../themes/icons';
+import { Navigation } from 'react-native-navigation';
+import { setScheduleScreen } from '../../navigation/pushScreens';
 const screenWidth = Dimensions.get('screen').width;
 
 export default class Detail extends React.Component {
   render() {
+  const  onSetSchedule = () => {
+      setScheduleScreen();
+    };
     return (
       <ScrollView style={{backgroundColor: 'white', width: screenWidth}}>
         <Image source={Images.model1} style={styles.image} />
@@ -28,6 +33,10 @@ export default class Detail extends React.Component {
           <Text>100.000/ giờ</Text>
           <Text>Chụp tại studio / ngoại cảnh</Text>
         </View>
+
+        <TouchableOpacity style={styles.setSchedule} onPress={() => onSetSchedule()}>
+          <Text>Đặt lịch</Text>
+        </TouchableOpacity>
 
         <ScrollView style={styles.detail}>
           <View style={styles.nag}>
@@ -53,7 +62,6 @@ export default class Detail extends React.Component {
             <Image source={Images.model3} style={styles.demo} />
           </View>
         </ScrollView>
-        
       </ScrollView>
     );
   }
@@ -116,5 +124,12 @@ const styles = StyleSheet.create({
   status: {
 	alignItems: 'center',
 	textAlign: 'center',
+  },
+  setSchedule: {
+    width: screenWidth,
+    height: 40,
+    backgroundColor: Color.but,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

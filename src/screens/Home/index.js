@@ -20,6 +20,8 @@ import { serviceScreen } from '../../navigation/pushScreens';
 import { useDispatch, useSelector } from 'react-redux';
 import HomeActions from '../../redux/HomeRedux/actions';
 import { map } from 'lodash';
+import HomePopular from './PopulaItem';
+import HomeRecommendation from './HomeRecommendation';
 const screenWidth = Dimensions.get('screen').width;
 
 const Homepage = () => {
@@ -33,10 +35,8 @@ const Homepage = () => {
   }, []);
 
   const populars = useSelector((state) => state.homeReducer.dataPopular);
-  console.log('p', populars);
 
   const recommendation = useSelector((state) => state.homeReducer.dataRecommendation);
-  console.log('r', recommendation);
   return (
     <ScrollView style={styles.container}>
       <View style={styles.topBar}>
@@ -94,78 +94,17 @@ const Homepage = () => {
 
       <Text style={styles.subTitle}>Phổ Biến</Text>
       <ScrollView style={styles.popular} horizontal={true}>
-      {/* {populars?.map((popular, index ) => {
-        TouchableOpacity style={styles.popularPhotographer} onPress={() => serviceScreen()}>
-          <Image
-            source={Images.nag1}
-            style={{ width: screenWidth / 3, height: screenWidth / 3, borderRadius: 10 }}
-          />
-          <Text style={styles.name}>{popular.username}</Text>
-        </TouchableOpacity>
-      })} */}
-      <TouchableOpacity style={styles.popularPhotographer} onPress={() => serviceScreen()}>
-          <Image source={Images.nag1} style={{ width: screenWidth / 3, height: screenWidth / 3, borderRadius: 10 }} />
-          <Text style={styles.name}>Nguyễn Văn Hùng</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.popularPhotographer} onPress={() => serviceScreen()}>
-          <Image source={Images.nag1} style={{ width: screenWidth / 3, height: screenWidth / 3, borderRadius: 10 }} />
-          <Text style={styles.name}>Nguyễn Văn Hùng</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.popularPhotographer} onPress={() => serviceScreen()}>
-          <Image source={Images.nag2} style={{ width: screenWidth / 3, height: screenWidth / 3, borderRadius: 10 }} />
-          <Text style={styles.name}>Nguyễn Văn Hùng</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.popularPhotographer} onPress={() => serviceScreen()}>
-          <Image source={Images.nag1} style={{ width: screenWidth / 3, height: screenWidth / 3 }} />
-          <Text style={styles.name}>Nguyễn Văn Hùng</Text>
-        </TouchableOpacity>
+      {populars?.map((popular, index ) => {
+        return <HomePopular item={popular} key={index} />;
+      })}
       </ScrollView>
       {/* ********************************************************************** */}
 
       <Text style={styles.subTitle}>Gợi Ý</Text>
       <ScrollView style={styles.suggestion}>
-        <TouchableOpacity style={styles.suggestionPhotographer}>
-          <Image source={Images.nag2} style={styles.imagePhoto} />
-          <View style={styles.content}>
-            <Text style={styles.name}>Môn Thúc</Text>
-            <View style={styles.address}>
-              <Image source={Icons.address} style={{ width: 16, height: 16 }} />
-              <Text>101b Le Huu Trac</Text>
-            </View>
-            <Text style={styles.description}>
-              Tạo ra các sản phẩm độc đáo, những sáng tạo trong cách tạo dáng, chụp, hiệu ứng,…
-            </Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.suggestionPhotographer}>
-          <Image source={Images.nag2} style={styles.imagePhoto} />
-          <View style={styles.content}>
-            <Text style={styles.name}>Môn Thúc</Text>
-            <View style={styles.address}>
-              <Image source={Icons.address} style={{ width: 16, height: 16 }} />
-              <Text>101b Le Huu Trac</Text>
-            </View>
-            <Text style={styles.description}>
-              Tạo ra các sản phẩm độc đáo, những sáng tạo trong cách tạo dáng, chụp, hiệu ứng,…
-            </Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.suggestionPhotographer}>
-          <Image source={Images.nag2} style={styles.imagePhoto} />
-          <View style={styles.content}>
-            <Text style={styles.name}>Môn Thúc</Text>
-            <View style={styles.address}>
-              <Image source={Icons.address} style={{ width: 16, height: 16 }} />
-              <Text>101b Le Huu Trac</Text>
-            </View>
-            <Text style={styles.description}>
-              Tạo ra các sản phẩm độc đáo, những sáng tạo trong cách tạo dáng, chụp, hiệu ứng,…
-            </Text>
-          </View>
-        </TouchableOpacity>
+      {recommendation?.map((suggestion, index ) => {
+        return <HomeRecommendation item={suggestion} key={index} />;
+      })}
         <TouchableOpacity style={styles.suggestionPhotographer}>
           <Image source={Images.nag2} style={styles.imagePhoto} />
           <View style={styles.content}>
@@ -180,9 +119,6 @@ const Homepage = () => {
           </View>
         </TouchableOpacity>
         {/* ********************************************************************** */}
-
-        {/* ********************************************************************** */}
-        <Text>test</Text>
       </ScrollView>
     </ScrollView>
   );

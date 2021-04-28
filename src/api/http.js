@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import axios from 'axios';
 
-const API_ROOT = 'http://backend-piccine.herokuapp.com/api';
+const API_ROOT = 'https://backend-piccine.herokuapp.com/api';
 
 axios.defaults.baseURL = API_ROOT;
 axios.defaults.timeout = 15000;

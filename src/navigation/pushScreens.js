@@ -297,3 +297,23 @@ export const infoScreen = () => {
     },
   });
 };
+export const setScheduleScreen = () => {
+  Navigation.setRoot({
+    root: {
+      stack: {
+        children: [
+          {
+            component: {
+              name: 'SetSchedule',
+              options: {
+                topBar: {
+                  visible: true,
+                },
+              },
+            },
+          },
+        ],
+      },
+    },
+  });
+};
