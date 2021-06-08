@@ -1,9 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useEffect } from 'react';
-import { Dimensions, StyleSheet, ScrollView } from 'react-native';
+import { Dimensions, StyleSheet, useWindowDimensions } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { TabView, SceneMap } from 'react-native-tab-view';
 import BookingActions from '../../redux/BookingRedux/actions';
-import Header from './Header';
 import WaitingComponent from './WatingComponent';
 const screenWidth = Dimensions.get('screen').width;
 
@@ -34,13 +34,39 @@ const ShowBooking = ({ componentId }) => {
       done.push(book.data[i]);
     }
   }
+
+  // =======================================================
+  const FirstRoute = () => {
+    waiting?.map((wait, index) => {
+      return <WaitingComponent componentId={componentId} item={wait} key={index} />;
+    });
+  };
+
+  const SecondRoute = () =>
+    book?.map((wait, index) => {
+      return <WaitingComponent componentId={componentId} item={wait} key={index} />;
+    });
+
+  const layout = useWindowDimensions();
+
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: 'first', title: 'First' },
+    { key: 'second', title: 'Second' },
+  ]);
+
+  const renderScene = SceneMap({
+    first: FirstRoute,
+    second: SecondRoute,
+  });
+  // =======================================================
   return (
-    <ScrollView style={{ backgroundColor: 'white', padding: 20 }}>
-      <Header />
-      {waiting?.map((wait, index) => {
-        return <WaitingComponent componentId={componentId} item={wait} key={index} />;
-      })}
-    </ScrollView>
+    <TabView
+      navigationState={{ index, routes }}
+      renderScene={renderScene}
+      onIndexChange={setIndex}
+      initialLayout={{ width: layout.width }}
+    />
   );
 };
 
