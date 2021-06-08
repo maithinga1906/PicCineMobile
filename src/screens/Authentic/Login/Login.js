@@ -1,7 +1,4 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-dupe-keys */
-/* eslint-disable react-native/no-inline-styles */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -13,14 +10,12 @@ import {
   Dimensions,
 } from 'react-native';
 import LoginTypes from '../../../redux/Auth/Login/actions';
+import { useDispatch } from 'react-redux';
 import InputItem from '../../../component/register/inputItem';
 import Images from '../../../themes/images';
 import { registerScreen } from '../../../navigation/pushScreens';
 import Color from '../../../themes/colors';
-import { Navigation } from 'react-native-navigation';
-import { useDispatch } from 'react-redux';
 const screenWidth = Dimensions.get('screen').width;
-const screenHeight = Dimensions.get('screen').height;
 
 const Login = (props) => {
   const [email, setEmail] = useState('');
@@ -28,19 +23,17 @@ const Login = (props) => {
   const [hidenVal] = useState(false);
 
   const dispatch = useDispatch();
-  onSignUp = () => {
+  const onSignUp = () => {
     registerScreen();
   };
 
-  onLogin = () => {
+  const onLogin = () => {
     const data = {
       username: email,
       password: password,
     };
     dispatch(LoginTypes.userLogin(data));
   };
-
-  onForgotPassword = () => {};
 
   return (
     <ScrollView style={styles.container}>
@@ -52,14 +45,14 @@ const Login = (props) => {
       </View>
 
       <InputItem
-        value={'Username'}
+        value={'Tên đăng nhập'}
         styles={styles.textInput}
         onChangeText={(val) => setEmail(val)}
       />
 
       <View>
         <Text>
-          Mật khẩu<Text style={{ color: 'red' }}>*</Text>
+          Mật khẩu <Text style={{ color: 'red' }}>*</Text>
         </Text>
         <TouchableOpacity>
           <Image
@@ -73,7 +66,7 @@ const Login = (props) => {
           onChangeText={(val) => setPassword(val)}
         />
       </View>
-      <TouchableOpacity style={styles.forgotPassButton} onPress={() => onForgotPassword()}>
+      <TouchableOpacity style={styles.forgotPassButton}>
         <Text style={{ color: 'red' }}>Quên Mật Khẩu</Text>
       </TouchableOpacity>
 

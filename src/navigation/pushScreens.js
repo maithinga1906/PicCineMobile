@@ -1,45 +1,7 @@
 import { Navigation } from 'react-native-navigation';
 import Icons from '../themes/icons';
-export const pushScreen = (
-  componentId,
-  screenApp,
-  passProps,
-  title,
-  visible,
-  left,
-  visibleBottom,
-) => {
-  Promise.all([Icons.getImageSource(left, 16)]).then(([leftImage, rightImage]) => {
-    Navigation.push(componentId, {
-      component: {
-        name: screenApp,
-        passProps: {
-          data: passProps,
-          title: title,
-        },
-        options: {
-          topBar: {
-            visible: visible,
-            title: {
-              text: title,
-            },
-            leftButtons: [
-              {
-                id: left,
-                icon: leftImage,
-                fontSize: 10,
-                color: '#555',
-              },
-            ],
-          },
-          bottomTabs: {
-            visible: visibleBottom,
-          },
-        },
-      },
-    });
-  });
-};
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 export const loginScreen = () => {
   Navigation.setRoot({
     root: {
@@ -83,109 +45,136 @@ export const introScreen = () => {
 };
 
 export const homeScreen = () => {
-  Promise.all([Icons.home, Icons.wishlist, Icons.bell, Icons.user]).then(
-    ([home, wishlist, bell, user]) => {
-      Navigation.setRoot({
-        root: {
-          bottomTabs: {
-            options: {
-              bottomTabs: {
-                currentTabIndex: 0,
+  Promise.all([
+    Icon.getImageSource('home', 18),
+    Icon.getImageSource('heart', 18),
+    Icon.getImageSource('paper-plane', 18),
+    Icon.getImageSource('user', 18),
+  ]).then(([home, wishlist, bell, user]) => {
+    Navigation.setRoot({
+      root: {
+        bottomTabs: {
+          options: {
+            bottomTabs: {
+              currentTabIndex: 0,
+            },
+          },
+          children: [
+            {
+              stack: {
+                children: [
+                  {
+                    component: {
+                      id: 'HOME_SCREEN',
+                      name: 'Homepage',
+                      options: {
+                        topBar: {
+                          visible: false,
+                        },
+                        bottomTab: {
+                          text: 'trang chủ',
+                          icon: home,
+                        },
+                      },
+                    },
+                  },
+                ],
               },
             },
-            children: [
-              {
-                stack: {
-                  children: [
-                    {
-                      component: {
-                        id: 'HOME_SCREEN',
-                        name: 'Homepage',
-                        options: {
-                          topBar: {
-                            visible: false,
-                          },
-                          bottomTab: {
-                            text: 'trang chủ',
-                            icon: Icons.home,
-                          },
-                        },
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                stack: {
-                  children: [
-                    {
-                      component: {
-                        name: 'Wishlist',
-                        options: {
-                          topBar: {
-                            visible: false,
-                          },
-                          bottomTab: {
+            {
+              stack: {
+                children: [
+                  {
+                    component: {
+                      name: 'Wishlist',
+                      options: {
+                        topBar: {
+                          visible: true,
+                          title: {
                             text: 'Yêu thích',
-                            icon: Icons.wishlist,
-                            fontSize: 18,
-                            animate: false,
-                            color: '#8F8F8F',
                           },
+                        },
+                        bottomTab: {
+                          text: 'Yêu thích',
+                          icon: wishlist,
+                          animate: false,
+                          color: '#8F8F8F',
                         },
                       },
                     },
-                  ],
-                },
+                  },
+                ],
               },
-              {
-                stack: {
-                  children: [
-                    {
-                      component: {
-                        name: 'Noti',
-                        options: {
-                          topBar: {
-                            visible: false,
+            },
+            {
+              stack: {
+                children: [
+                  {
+                    component: {
+                      name: 'ShowBooking',
+                      options: {
+                        topBar: {
+                          visible: true,
+                          background: '#F4B9A7',
+                          title: {
+                            text: 'Lịch Chụp',
                           },
-                          bottomTab: {
-                            text: 'Thông báo',
-                            icon: Icons.bell,
-                            color: '#8F8F8F',
-                          },
+                        },
+                        bottomTab: {
+                          text: 'Lịch Chụp',
+                          icon: bell,
+                          animate: false,
+                          color: '#8F8F8F',
                         },
                       },
                     },
-                  ],
-                },
+                  },
+                ],
               },
-              {
-                stack: {
-                  children: [
-                    {
-                      component: {
-                        name: 'Profile',
-                        options: {
-                          topBar: {
-                            visible: true,
-                          },
-                          bottomTab: {
-                            text: 'Tôi',
-                            icon: Icons.user,
-                            color: '#8F8F8F',
-                          },
+            },
+            {
+              stack: {
+                children: [
+                  {
+                    component: {
+                      name: 'Profile',
+                      options: {
+                        topBar: {
+                          visible: false,
+                        },
+                        bottomTab: {
+                          text: 'Tôi',
+                          icon: user,
+                          animate: false,
+                          color: '#8F8F8F',
                         },
                       },
                     },
-                  ],
-                },
+                  },
+                ],
               },
-            ],
-          },
+            },
+          ],
         },
-      });
-    },
-  );
+      },
+    });
+    Navigation.setDefaultOptions({
+      bottomTab: {
+        textColor: 'black',
+        iconColor: 'black',
+        selectedIconColor: '#A64244',
+        selectedTextColor: '#A64244',
+      },
+      bottomTabs: {
+        visible: true,
+        animate: false,
+        elevation: 10,
+        titleDisplayMode: 'alwaysShow',
+        preferLargeIcons: true,
+        animateTabSelection: false,
+      },
+    });
+  });
 };
 /*///////////////////////////////////////////////////////////////*/
 export const serviceScreen = () => {
@@ -198,13 +187,7 @@ export const serviceScreen = () => {
               name: 'Service',
               options: {
                 topBar: {
-                  visible: true,
-                  backButton: {
-                    //55
-                    id: 'BACK',
-                    //55
-                    visible: true,
-                  },
+                  visible: false,
                 },
               },
             },
@@ -225,6 +208,35 @@ export const detailScreen = () => {
               options: {
                 topBar: {
                   visible: true,
+                  backButton: {
+                    id: 'backButton',
+                    icon: Icons.back,
+                  },
+                  height: 10,
+                },
+              },
+            },
+          },
+        ],
+      },
+    },
+  });
+};
+export const bookScreen = () => {
+  Navigation.setRoot({
+    root: {
+      stack: {
+        children: [
+          {
+            component: {
+              name: 'ShowBooking',
+              options: {
+                topBar: {
+                  visible: true,
+                  backButton: {
+                    id: 'backButton',
+                    icon: Icons.back,
+                  },
                   height: 10,
                 },
               },
@@ -267,7 +279,7 @@ export const commentScreen = () => {
               name: 'Comment',
               options: {
                 topBar: {
-                  visible: true,
+                  visible: false,
                 },
               },
             },
@@ -287,27 +299,7 @@ export const infoScreen = () => {
               name: 'Info',
               options: {
                 topBar: {
-                  visible: true,
-                },
-              },
-            },
-          },
-        ],
-      },
-    },
-  });
-};
-export const setScheduleScreen = () => {
-  Navigation.setRoot({
-    root: {
-      stack: {
-        children: [
-          {
-            component: {
-              name: 'SetSchedule',
-              options: {
-                topBar: {
-                  visible: true,
+                  visible: false,
                 },
               },
             },

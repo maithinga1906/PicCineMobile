@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import React from 'react';
 import { Navigation } from 'react-native-navigation';
 import { Provider } from 'react-redux';
@@ -9,10 +8,7 @@ import Register from '../screens/Authentic/Register/Register';
 import Homepage from '../screens/Home';
 import Confirm from '../screens/Authentic/ForgotPass/Confirm';
 import FillEmal from '../screens/Authentic/ForgotPass/FillEmal';
-import Noti from '../screens/Notification/Noti';
-import Detail from '../screens/photoDetail/Detail';
 import Payment from '../screens/Booking/Payment';
-import SetCalendar from '../screens/Booking/SetCalendar';
 import Transfer from '../screens/Booking/Transfer';
 import Comment from '../screens/photoDetail/Comment';
 import Info from '../screens/photoDetail/Info';
@@ -22,7 +18,9 @@ import Head from '../screens/Profile/head';
 import Profile from '../screens/Profile/Profile';
 import QR from '../screens/Profile/QR';
 import Wishlist from '../screens/Wishlist';
+import Detail from '../screens/photoDetail/Detail';
 import SetSchedule from '../screens/Booking/SetSchedule';
+import ShowBooking from '../screens/ShowBooking';
 
 function ReduxProvider(Component) {
   return (props) => (
@@ -69,20 +67,16 @@ export function registerScreens() {
     () => FillEmal,
   );
   Navigation.registerComponent(
-    'Noti',
-    () => ReduxProvider(Noti),
-    () => Noti,
+    'ShowBooking',
+    () => ReduxProvider(ShowBooking),
+    () => ShowBooking,
   );
   Navigation.registerComponent(
     'Payment',
     () => ReduxProvider(Payment),
     () => Payment,
   );
-  Navigation.registerComponent(
-    'SetCalendar',
-    () => ReduxProvider(SetCalendar),
-    () => SetCalendar,
-  );
+
   Navigation.registerComponent(
     'Transfer',
     () => ReduxProvider(Transfer),

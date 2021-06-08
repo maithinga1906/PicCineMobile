@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
 import { StyleSheet, View, SafeAreaView } from 'react-native';
@@ -13,35 +14,28 @@ class Intro extends Component {
         id: 1,
         imageSource: Images.intro1,
         title: 'ĐEM LẠI CÁC TRẢI NGHIỆM HÌNH ẢNH',
-        subTitle:
-          'Chưa Biết viết cái gì',
+        subTitle: 'Chưa Biết viết cái gì',
         statusButton: false,
       },
       {
         id: 2,
         imageSource: Images.intro2,
         title: 'KẾT NỐI VỚI CÁC NHIẾP ẢNH GIA',
-        subTitle:
-          'Chưa Biết viết cái gì',
+        subTitle: 'Chưa Biết viết cái gì',
         statusButton: false,
       },
       {
         id: 3,
         imageSource: Images.intro3,
         title: 'CHÀO MỪNG BẠN ĐẾN VỚI PICCINE',
-        subTitle:
-          'Chưa Biết viết cái gì',
+        subTitle: 'Chưa Biết viết cái gì',
         statusButton: true,
       },
     ];
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.topContainer}>
-          <Swiper
-            style={styles.wrapper}
-            activeDotColor={Colors.primary}
-            loop={false}
-          >
+          <Swiper style={styles.wrapper} activeDotColor={Colors.primary} loop={false}>
             {INTROS.map((item) => {
               return <IntroComponent data={item} key={item.id} />;
             })}

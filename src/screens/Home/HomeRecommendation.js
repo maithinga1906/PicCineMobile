@@ -1,25 +1,43 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity } from 'react-native';
-import { serviceScreen } from '../../navigation/pushScreens';
-import Images from '../../themes/images';
-import Icons from '../../themes/icons';
+import { Navigation } from 'react-native-navigation';
 import { Colors } from '../../themes';
-const screenHeight = Dimensions.get('screen').height;
+
 const screenWidth = Dimensions.get('screen').width;
 
 const HomeRecommendation = (props) => {
+  const onGet = () => {
+    Navigation.push(props.componentId, {
+      component: {
+        name: 'Service',
+        passProps: {
+          item: props.item,
+        },
+        options: {
+          topBar: {
+            visible: true,
+            title: {
+              text: props.item.nickname,
+              alignment: 'center',
+            },
+          },
+        },
+      },
+    });
+  };
+
   return (
-    <TouchableOpacity style={styles.suggestionPhotographer} onPress={() => serviceScreen()}>
-      <Image source={Images.nag2} style={styles.imagePhoto} />
-      <View style={styles.content}>
-        <Text style={styles.name}>{props.item.username}</Text>
-        <View style={styles.address}>
-          <Image source={Icons.address} style={{ width: 16, height: 16 }} />
-          <Text>{props.item.address}</Text>
+    <View>
+      <TouchableOpacity style={styles.suggestionPhotographer} onPress={onGet}>
+        <Image source={{ uri: props.item.avatar }} style={styles.imagePhoto} />
+        <View style={styles.content}>
+          <Text style={styles.name}>{props.item.nickname}</Text>
+          <View style={styles.address}>
+            <Text style={styles.studio}>{props.item.address}</Text>
+          </View>
         </View>
-        <Text style={styles.description}>{props.item.address}</Text>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -27,30 +45,33 @@ export default HomeRecommendation;
 
 const styles = StyleSheet.create({
   suggestionPhotographer: {
-    width: screenWidth,
-    flexDirection: 'row',
-    marginBottom: 10,
+    width: screenWidth / 2 - 20,
+    marginBottom: 30,
     borderRadius: 10,
   },
   imagePhoto: {
-    width: screenWidth / 3,
+    width: screenWidth / 2.5,
     height: screenWidth / 3,
     borderRadius: 10,
   },
   content: {
-    width: screenWidth / 2,
-    height: screenWidth / 3,
+    width: screenWidth,
     justifyContent: 'space-between',
-    marginLeft: 20,
   },
   address: {
     flexDirection: 'row',
   },
   name: {
-    fontSize: 16,
+    marginTop: 20,
+    fontSize: 12,
     fontWeight: 'bold',
   },
   description: {
     fontSize: 12,
+  },
+  studio: {
+    fontSize: 12,
+    color: Colors.background,
+    fontWeight: 'bold',
   },
 });

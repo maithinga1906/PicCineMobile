@@ -27,7 +27,6 @@ const SignUp = () => {
 
   const dispatch = useDispatch();
   const onLogin = () => {
-    console.log(2);
     loginScreen();
   };
   const onRegister = () => {
@@ -35,6 +34,8 @@ const SignUp = () => {
       const data = {
         username: username,
         password: password,
+        id_role: 2,
+        phone: phone,
         email: email,
       };
       dispatch(userRegister(data));
@@ -46,7 +47,7 @@ const SignUp = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.formName}>SignUp</Text>
+        <Text style={styles.formName}>Đăng Ký</Text>
       </View>
 
       <InputItem
@@ -107,6 +108,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     marginTop: 0,
+    marginBottom: 50,
   },
   main: {
     alignContent: 'center',

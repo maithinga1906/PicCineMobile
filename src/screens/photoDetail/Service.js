@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -18,65 +18,36 @@ import Icons from '../../themes/icons';
 import Swiper from 'react-native-swiper';
 import Info from './Info';
 import { detailScreen } from '../../navigation/pushScreens';
+import { useDispatch, useSelector } from 'react-redux';
+import CategoryTypes from '../../redux/Categories/actions';
+import { ServiceComponent } from './ServiceComponent';
 const screenWidth = Dimensions.get('screen').width;
 
-export default class Service extends React.Component {
-  render() {
-    return (
-      <ScrollView style={{ backgroundColor: 'white' }}>
-        <Info />
-        <TouchableOpacity style={styles.container} onPress={() => detailScreen()}>
-          <Image source={Images.model1} style={styles.image} />
-          <View style={styles.info}>
-            <Text style={styles.title}>Chụp hình cổ phong</Text>
-            <View>
-              <Text>100.000₫ / 1h </Text>
-              <Text>Chụp tại studio / ngoại cảnh</Text>
-            </View>
-          </View>
-        </TouchableOpacity>
+const Service = (props) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(CategoryTypes.getCategory(props.item.id));
+  }, []);
 
-        <TouchableOpacity style={styles.container} onPress={() => detailScreen()}>
-          <Image source={Images.model2} style={styles.image} />
-          <View style={styles.info}>
-            <Text style={styles.title}>Chụp hình cổ phong</Text>
-            <View>
-              <Text>100.000₫ / 1h </Text>
-              <Text>Chụp tại studio / ngoại cảnh</Text>
-            </View>
-          </View>
-        </TouchableOpacity>
+  const category = useSelector((state) => state.categoryReducer.categories);
+  return (
+    <ScrollView style={{ backgroundColor: 'white', padding: 20 }}>
+      <Info item={props.item} />
 
-        <TouchableOpacity style={styles.container} onPress={() => detailScreen()}>
-          <Image source={Images.model3} style={styles.image} />
-          <View style={styles.info}>
-            <Text style={styles.title}>Chụp hình cổ phong</Text>
-            <View>
-              <Text>100.000₫ / 1h </Text>
-              <Text>Chụp tại studio / ngoại cảnh</Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.container} onPress={() => detailScreen()}>
-          <Image source={Images.model4} style={styles.image} />
-          <View style={styles.info}>
-            <Text style={styles.title}>Chụp hình cổ phong</Text>
-            <View>
-              <Text>100.000₫ / 1h </Text>
-              <Text>Chụp tại studio / ngoại cảnh</Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-      </ScrollView>
-    );
-  }
-}
-// Service.options = {
-//   topBar: {
-//     visible: true,
-//   },
-// };
+      {category?.map((cate, index) => {
+        return (
+          <ServiceComponent
+            componentId={props.componentId}
+            item={cate}
+            key={index}
+            photographer={props.item}
+          />
+        );
+      })}
+    </ScrollView>
+  );
+};
+export default Service;
 
 const styles = StyleSheet.create({
   container: {

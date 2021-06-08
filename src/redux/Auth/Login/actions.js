@@ -17,6 +17,7 @@ const getInfoUserSuccess = (response) =>
 const getInfoUserFailure = (error) => makeActionCreator(LoginTypes.USER_INFO_FAILURE, { error });
 
 /************************************************** */
+const userLogout = () => makeActionCreator(LoginTypes.USER_LOGOUT);
 
 const userLogin = (data) => makeActionCreator(LoginTypes.USER_LOGIN, { data });
 const userLoginSuccess = (response) =>
@@ -27,4 +28,5 @@ export default {
   userLoginSuccess,
   userLoginFailure,
   getInfoUser,
+  userLogout,
 };

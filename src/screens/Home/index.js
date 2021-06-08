@@ -1,5 +1,4 @@
 /* eslint-disable react-native/no-inline-styles */
-/* eslint-disable prettier/prettier */
 import React, { useEffect } from 'react';
 import {
   StyleSheet,
@@ -9,23 +8,27 @@ import {
   Dimensions,
   TouchableOpacity,
   TextInput,
-  Image,
 } from 'react-native';
-import Images from '../../themes/images';
 import Color from '../../themes/colors';
-import Icons from '../../themes/icons';
-import Swiper from 'react-native-swiper';
-// import { NavigationUtils } from '../../navigation';
-import { serviceScreen } from '../../navigation/pushScreens';
 import { useDispatch, useSelector } from 'react-redux';
 import HomeActions from '../../redux/HomeRedux/actions';
-import { map } from 'lodash';
-import HomePopular from './PopulaItem';
 import HomeRecommendation from './HomeRecommendation';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Slide from '../../component/Slide';
+import messaging from '@react-native-firebase/messaging';
 const screenWidth = Dimensions.get('screen').width;
 
-const Homepage = () => {
+const Homepage = ({ componentId }) => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubscribe = messaging().onMessage(async (remoteMessage) => {
+      console.log('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    });
+
+    return unsubscribe;
+  }, []);
+
   useEffect(() => {
     dispatch(HomeActions.getPopularHome());
   }, []);
@@ -34,97 +37,89 @@ const Homepage = () => {
     dispatch(HomeActions.getRecommendationHome());
   }, []);
 
-  const populars = useSelector((state) => state.homeReducer.dataPopular);
-
+  const info = useSelector((state) => state.info.dataInfo);
   const recommendation = useSelector((state) => state.homeReducer.dataRecommendation);
+
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.topBar}>
-        <TextInput style={styles.search} placeholder="Tìm kiếm...">
-          {/* <Image
-            source={Icons.search}
-            style={{paddingLeft: 10}} /> */}
-        </TextInput>
+      <View
+        style={{
+          backgroundColor: '#f4b9a7',
+          borderBottomLeftRadius: 50,
+          borderBottomRightRadius: 50,
+          height: 200,
+        }}
+      >
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            padding: 20,
+            alignItems: 'center',
+          }}
+        >
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 24,
+              fontWeight: '700',
+            }}
+          >
+            Welcome {info?.username}
+          </Text>
+          <Icon name={'bell'} size={20} color={'white'} />
+        </View>
 
-        <TouchableOpacity style={{ marginLeft: 14 }}>
-          <Image source={Icons.list} />
-        </TouchableOpacity>
+        <View style={styles.searching}>
+          <TextInput style={styles.search} placeholder="Tìm kiếm..." />
+        </View>
+        <View style={styles.navigate}>
+          <TouchableOpacity>
+            <View style={styles.topButton}>
+              <View style={styles.button}>
+                <Icon name={'paper-plane'} size={18} />
+              </View>
+              <Text style={styles.text}>Top Nhiếp Ảnh</Text>
+            </View>
+          </TouchableOpacity>
 
-        <TouchableOpacity style={{ marginLeft: 14 }}>
-          <Image source={Icons.chat} />
-        </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={styles.topButton}>
+              <View style={styles.button}>
+                <Icon name={'paper-plane'} size={18} />
+              </View>
+              <Text style={styles.text}>Gần Bạn</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={styles.topButton}>
+              <View style={styles.button}>
+                <Icon name={'ticket'} size={18} />
+              </View>
+              <Text style={styles.text}>Khuyến Mãi</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
-
-      <View style={styles.slides}>
-        <Swiper style={styles.wrapper}>
-          <View style={styles.slide1}>
-            <Image source={Images.slide1} />
-          </View>
-          <View style={styles.slide1}>
-            <Image source={Images.slide2} />
-          </View>
-          <View style={styles.slide1}>
-            <Image source={Images.slide1} />
-          </View>
-        </Swiper>
-      </View>
-
-      <View style={styles.navigate}>
-        <TouchableOpacity style={styles.topButton}>
-          <View style={styles.button}>
-            <Image source={Icons.top} />
-          </View>
-          <Text style={styles.text}>Top Nhiếp Ảnh Gia</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.topButton}>
-          <View style={styles.button}>
-            <Image source={Icons.top} />
-          </View>
-          <Text style={styles.text}>Top Nhiếp Ảnh Gia</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.topButton}>
-          <View style={styles.button}>
-            <Image source={Icons.top} />
-          </View>
-          <Text style={styles.text}>Top Nhiếp Ảnh Gia</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* ********************************************************************** */}
-
-      <Text style={styles.subTitle}>Phổ Biến</Text>
-      <ScrollView style={styles.popular} horizontal={true}>
-      {populars?.map((popular, index ) => {
-        return <HomePopular item={popular} key={index} />;
-      })}
-      </ScrollView>
-      {/* ********************************************************************** */}
-
+      <Slide />
       <Text style={styles.subTitle}>Gợi Ý</Text>
       <ScrollView style={styles.suggestion}>
-      {recommendation?.map((suggestion, index ) => {
-        return <HomeRecommendation item={suggestion} key={index} />;
-      })}
-        <TouchableOpacity style={styles.suggestionPhotographer}>
-          <Image source={Images.nag2} style={styles.imagePhoto} />
-          <View style={styles.content}>
-            <Text style={styles.name}>Môn Thúc</Text>
-            <View style={styles.address}>
-              <Image source={Icons.address} style={{ width: 16, height: 16 }} />
-              <Text>101b Le Huu Trac</Text>
-            </View>
-            <Text style={styles.description}>
-              Tạo ra các sản phẩm độc đáo, những sáng tạo trong cách tạo dáng, chụp, hiệu ứng,…
-            </Text>
-          </View>
-        </TouchableOpacity>
-        {/* ********************************************************************** */}
+        <View style={styles.wrapView}>
+          {recommendation?.map((suggestion, index) => {
+            return <HomeRecommendation componentId={componentId} item={suggestion} key={index} />;
+          })}
+        </View>
       </ScrollView>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  wrapView: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -133,13 +128,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: Color.background,
     width: screenWidth,
-    height: 60,
-    alignItems: 'center',
+    height: 170,
   },
   search: {
-    borderColor: Color.border,
-    borderWidth: 1,
-    width: screenWidth / 1.5,
+    width: screenWidth - 40,
     height: 40,
     borderRadius: 5,
     backgroundColor: 'white',
@@ -147,38 +139,42 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   slides: {
-    height: 150,
+    height: 250,
   },
   navigate: {
-    width: screenWidth,
-    height: 80,
+    width: screenWidth - 40,
+    backgroundColor: 'white',
+    height: 94,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 20,
+    marginTop: 30,
+    margin: 20,
+    borderRadius: 14,
+    padding: 20,
+    borderColor: 'gray',
+    borderWidth: 0.5,
   },
   topButton: {
     width: screenWidth / 4,
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 10,
-    marginRight: 10,
+    marginTop: 10,
   },
   button: {
     width: 40,
     height: 40,
-    backgroundColor: Color.but,
+    backgroundColor: Color.background,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 10,
+    borderRadius: 20,
   },
   text: {
-    fontWeight: 'bold',
     fontSize: 12,
     paddingLeft: 10,
-    width: screenWidth / 4 - 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: screenWidth / 4,
+    textAlign: 'center',
+    marginTop: 10,
   },
   imagePhoto: {
     width: screenWidth / 3,
@@ -188,7 +184,9 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginTop: 22,
+    paddingLeft: 20,
+    alignItems: 'center',
+    marginTop: 24,
   },
 
   popular: {
@@ -224,7 +222,10 @@ const styles = StyleSheet.create({
   },
   suggestion: {
     flex: 1,
-    marginLeft: 10,
+    padding: 20,
+  },
+  searching: {
+    flexDirection: 'row',
   },
 });
 export default Homepage;

@@ -7,3 +7,11 @@ export async function photographerPopularApi() {
 export async function photographerRecommendationApi() {
   return http.get('/photographer/recommendation');
 }
+
+export async function CategoryApi(id) {
+  return http.get('/photographer/combo/' + id);
+}
+
+export async function searchApi(data) {
+  return http.get('/photographer/search', data);
+}

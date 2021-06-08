@@ -9,6 +9,7 @@ export const INITIAL_STATE = Immutable({
   loginResponse: null,
   token: null,
   loginType: '',
+  info: null,
 });
 
 export const userLogin = (state, { response }) =>
@@ -24,6 +25,14 @@ export const userLoginFailure = (state, { error }) =>
   state.merge({ loadingLogin: false, errorLogin: error });
 
 /************************************************************* */
+export const getÌnoSuccess = (state, { response }) =>
+  state.merge({
+    info: response,
+    loadingLogin: false,
+    errorLogin: false,
+  });
+export const getCategoryFailure = (state, { error }) =>
+  state.merge({ errorLogin: error, loadingLogin: false });
 
 const userReducer = makeReducerCreator(INITIAL_STATE, {
   [LoginTypes.USER_LOGIN]: userLogin,

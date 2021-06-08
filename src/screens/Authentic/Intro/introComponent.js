@@ -1,51 +1,62 @@
-/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity, Dimensions } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { loginScreen } from '../../../navigation/pushScreens';
+import { useDispatch } from 'react-redux';
+import { markSkipIntro } from '../../../redux/AppRedux/actions';
+import { Colors } from '../../../themes';
 const screenWidth = Dimensions.get('screen').width;
 const screenHeight = Dimensions.get('screen').height;
 
-export default class IntroComponent extends React.PureComponent {
-  render() {
-    const { data } = this.props;
-    const { imageSource, title, subTitle, statusButton } = data;
-    return (
-      <View style={styles.slide}>
-        {/* <Icon name="ic-back" color="red" size={24} /> */}
-        <View style={styles.topSlide}>
-          <View style={{ justifyContent: 'flex-end' }}>
-            <Image
-              source={imageSource}
-              style={{
-                height: screenHeight / 3,
-                width: screenWidth / 1.3,
-              }}
-            />
-          </View>
+const IntroComponent = (props) => {
+  const dispatch = useDispatch();
+  const makeSkipIntro = () => {
+    dispatch(markSkipIntro());
+  };
+  const { data } = props;
+  const { imageSource, title, subTitle, statusButton } = data;
+  return (
+    <View style={styles.slide}>
+      <View style={styles.topSlide}>
+        <View style={{ justifyContent: 'flex-end' }}>
+          <Image
+            source={imageSource}
+            style={{
+              height: screenHeight / 3,
+              width: screenWidth / 1.3,
+            }}
+          />
+        </View>
+        <View style={styles.borderText}>
           <View>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.subTitle}>{subTitle}</Text>
           </View>
+          {statusButton === true ? (
+            <View style={styles.buttonGroup}>
+              <TouchableOpacity style={styles.button} onPress={makeSkipIntro}>
+                <Text style={styles.textButton}>Bắt Đầu</Text>
+              </TouchableOpacity>
+            </View>
+          ) : null}
         </View>
-
-        {statusButton === true ? (
-          <View style={styles.buttonGroup}>
-            <TouchableOpacity style={styles.button} onPress={() => loginScreen()}>
-              <Text style={styles.textButton}>Bắt Đầu</Text>
-            </TouchableOpacity>
-          </View>
-        ) : null}
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
+export default IntroComponent;
 
 const styles = StyleSheet.create({
   slide: {
     flex: 1,
     alignItems: 'center',
+  },
+  borderText: {
+    width: screenWidth,
+    height: 300,
+    marginTop: 120,
+    backgroundColor: Colors.background,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
   },
   topSlide: {
     alignItems: 'center',

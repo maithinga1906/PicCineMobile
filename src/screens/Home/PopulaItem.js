@@ -1,17 +1,32 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity } from 'react-native';
-import { serviceScreen } from '../../navigation/pushScreens';
+import { StyleSheet, Text, Image, Dimensions, TouchableOpacity } from 'react-native';
 import { Images } from '../../themes';
-const screenHeight = Dimensions.get('screen').height;
+import { Navigation } from 'react-native-navigation';
 const screenWidth = Dimensions.get('screen').width;
 
 const HomePopular = (props) => {
+  const onGet = () => {
+    Navigation.push(props.componentId, {
+      component: {
+        name: 'Service',
+        passProps: {
+          item: props.item,
+        },
+        options: {
+          topBar: {
+            visible: true,
+            title: {
+              text: 'Service',
+              alignment: 'center',
+            },
+          },
+        },
+      },
+    });
+  };
   return (
-    <TouchableOpacity style={styles.popularPhotographer} onPress={() => serviceScreen()}>
-      <Image
-        source={Images.nag1}
-        style={{ width: screenWidth / 3, height: screenWidth / 3, borderRadius: 10 }}
-      />
+    <TouchableOpacity style={styles.popularPhotographer} onPress={() => onGet()}>
+      <Image source={Images.nag1} style={styles.imageStyle} />
       <Text style={styles.name}>{props.item.username}</Text>
     </TouchableOpacity>
   );
@@ -28,5 +43,10 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  imageStyle: {
+    width: screenWidth / 3,
+    height: screenWidth / 3,
+    borderRadius: 10,
   },
 });

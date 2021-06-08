@@ -6,19 +6,18 @@ export const INITIAL_STATE = Immutable({
   dataInfo: null,
   errorInfo: false,
   loadingInfo: true,
-  dataTypes: null,
-  errorTypes: false,
 });
 
 /************************************************************* */
 export const getInfoSuccess = (state, { response }) =>
   state.merge({
-    dataInfo: response.data,
-    errorHome: false,
-    loadingHome: false,
+    dataInfo: response,
+    errorInfo: false,
+    loadingInfo: false,
   });
+
 export const getInfoFailure = (state, { error }) =>
-  state.merge({ errorHome: error, loadingHome: false });
+  state.merge({ errorInfo: error, loadingInfo: false });
 
 const infoReducer = makeReducerCreator(INITIAL_STATE, {
   [InfoTypes.USER_INFO_SUCCESS]: getInfoSuccess,

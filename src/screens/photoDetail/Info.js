@@ -1,78 +1,27 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable prettier/prettier */
 import * as React from 'react';
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  Text,
-  Dimensions,
-  TouchableOpacity,
-  TextInput,
-  Image,
-  ImageBackground,
-} from 'react-native';
-import Images from '../../themes/images';
+import { StyleSheet, View, Text, Dimensions, ImageBackground } from 'react-native';
 import Color from '../../themes/colors';
-import Icons from '../../themes/icons';
-import Swiper from 'react-native-swiper';
-import { useWindowDimensions } from 'react-native';
-import { commentScreen, serviceScreen } from '../../navigation/pushScreens';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 const screenWidth = Dimensions.get('screen').width;
 const screenHeight = Dimensions.get('screen').height;
-//***************************0 */
-export default function Info() {
+
+const Info = (props) => {
   return (
     <View>
       <View style={styles.container}>
-        <ImageBackground source={Images.nag2} style={styles.image}>
-          <TouchableOpacity>
-            <Image source={Icons.back} />
-          </TouchableOpacity>
-
-          <View style={styles.star}>
-            <Image source={Icons.star1} />
-            <Image source={Icons.star1} />
-            <Image source={Icons.star1} />
-            <Image source={Icons.star1} />
-            <Image source={Icons.star2} />
-          </View>
-        </ImageBackground>
+        <ImageBackground source={{ uri: props.item.avatar }} style={styles.image} />
         <View style={styles.info}>
-          <Text>Môn Thúc</Text>
-          <Text>Đam mê - Sáng tạo - Phong Cách</Text>
-          <Text>101b Lê Hữu Trác</Text>
-          <Text>Nhận chụp hình: T2 - CN </Text>
+          <Text>{props.item.nickname}</Text>
+          <Text>
+            <Icon name={'map-marker'} size={14} />: {props.item.studio_address}
+          </Text>
         </View>
-      </View>
-
-      <View style={styles.tab}>
-        <TouchableOpacity
-          style={styles.tabView}
-          onPress={() => serviceScreen()}
-        >
-          <Image source={Icons.camera} />
-          <Text>Dịch vụ</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.tabView}
-          onPress={() =>  commentScreen()}
-        >
-          <Image source={Icons.cmt} />
-          <Text>Bình luận</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.tabView}
-          // onPress={() =>  NavigationUtils.detailContent()}
-        >
-          <Image source={Icons.camera} />
-          <Text>Voucher</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );
-}
+};
+export default Info;
 Info.options = {
   topBar: {
     height: 0,
@@ -95,9 +44,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   info: {
-    margin: 10,
-    borderBottomWidth: 1,
+    borderBottomWidth: 3,
     borderBottomColor: Color.border,
+    marginBottom: 30,
+    marginTop: 20,
   },
   tab: {
     flexDirection: 'row',
@@ -106,7 +56,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    width: screenWidth / 3,
+    width: screenWidth / 2,
     height: 50,
     backgroundColor: Color.background,
   },

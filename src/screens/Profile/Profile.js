@@ -1,7 +1,7 @@
 /* eslint-disable no-lone-blocks */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import {
   View,
   Text,
@@ -12,36 +12,53 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Icons from '../../themes/icons';
-import Images from '../../themes/images';
 const screenWidth = Dimensions.get('screen').width;
-import { useSelector } from 'react-redux';
-import Head from './head';
+import { useSelector, useDispatch } from 'react-redux';
+import actions from '../../redux/Auth/Login/actions';
+import InfoAction from '../../redux/Auth/InfoRedux/actions';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Profile = () => {
-  const user = useSelector((state) => state.login.loginResponse);
+  const dispatch = useDispatch();
+  const onLogout = () => {
+    dispatch(actions.userLogout());
+  };
+  useEffect(() => {
+    dispatch(InfoAction.getInfoUser());
+  }, []);
+  const info = useSelector((state) => state.info.dataInfo);
   return (
     <ScrollView style={{ backgroundColor: 'white' }}>
-      <Head />
+      <View style={styles.avatar}>
+        <Image style={styles.img} source={{ uri: info?.avatar }} />
+        <TouchableOpacity style={styles.edit}>
+          <Image source={Icons.edit} />
+        </TouchableOpacity>
+      </View>
       <View style={styles.content}>
         <View style={styles.info}>
           <Text style={styles.title}>Tên đăng nhập </Text>
-          <Text style={styles.detail}>{user.username}</Text>
+          <Text style={styles.detail}>{info?.username}</Text>
         </View>
 
         <View style={styles.info}>
           <Text style={styles.title}>Email </Text>
-          <Text>{user.email}</Text>
+          <Text>{info?.email}</Text>
         </View>
 
         <View style={styles.info}>
           <Text style={styles.title}>Số điện thoại </Text>
-          <Text>{user.phone}</Text>
+          <Text>{info?.phone}</Text>
         </View>
 
         <View style={styles.info}>
-          <Text style={styles.title}>Ngày sinh </Text>
-          <Text>18/05/2000</Text>
+          <Text style={styles.title}>Địa chỉ</Text>
+          <Text>{info?.address}</Text>
         </View>
+        <TouchableOpacity style={styles.info} onPress={onLogout}>
+          <Text style={styles.title}>Đăng xuất</Text>
+          <Icon name={'sign-out'} size={16} />
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -63,4 +80,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   title: { fontWeight: 'bold' },
+  avatar: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  img: {
+    width: screenWidth,
+    height: 300,
+    borderColor: '#F4B9A7',
+    borderWidth: 1,
+  },
+  logout: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
 });

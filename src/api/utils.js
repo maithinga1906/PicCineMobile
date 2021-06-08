@@ -146,10 +146,7 @@ function requestWrapper(method) {
       ...defaults,
       headers: { ...params, ...defaults.headers },
     };
-    console.log(url);
-    console.log(paramsObj);
 
-    // console.log(url, paramsObj);
     return xfetch(url, paramsObj);
   };
 }

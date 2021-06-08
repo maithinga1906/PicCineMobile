@@ -1,5 +1,5 @@
 {
-  "name": "Graduation",
+  "name": " Piccine",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.2",
-    "@react-native-community/datetimepicker": "^3.4.3",
+    "@react-native-community/datetimepicker": "^3.5.2",
     "@react-native-community/viewpager": "^5.0.11",
+    "@react-native-firebase/app": "^12.0.0",
+    "@react-native-firebase/messaging": "^12.0.0",
     "axios": "^0.21.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
@@ -21,8 +23,12 @@
     "react-moment": "^1.1.1",
     "react-native": "0.64.0",
     "react-native-awesome-alerts": "^1.4.2",
+    "react-native-date-picker": "^3.3.0",
     "react-native-datepicker": "^1.7.2",
+    "react-native-document-picker": "^5.0.4",
+    "react-native-fontawesome": "^7.0.0",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-modal-datetime-picker": "^10.0.0",
     "react-native-navigation": "^7.13.0",
     "react-native-slideshow": "^1.0.1",
     "react-native-swiper": "^1.6.0",

@@ -3,10 +3,9 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 import { userRegisterFailure, userRegisterSuccess, RegisterTypes } from './actions';
 import { startup } from '../../AppRedux/actions';
 import { userRegisterApi } from '../../../api/auth';
-import { homeScreen, loginScreen } from '../../../navigation/pushScreens';
+import { loginScreen } from '../../../navigation/pushScreens';
 
 export function* userRegisterSaga({ data }) {
-  console.log(data);
   try {
     const response = yield call(userRegisterApi, data);
     const newResponse = {
@@ -17,7 +16,6 @@ export function* userRegisterSaga({ data }) {
     loginScreen();
     yield put(startup());
   } catch (error) {
-    console.log(error);
     yield put(userRegisterFailure(error));
   }
 }

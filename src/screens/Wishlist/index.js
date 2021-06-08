@@ -16,97 +16,20 @@ import Images from '../../themes/images';
 import Color from '../../themes/colors';
 import Icons from '../../themes/icons';
 import Swiper from 'react-native-swiper';
+import Screen404 from '../Screen404';
 const screenWidth = Dimensions.get('screen').width;
 const screenHeight = Dimensions.get('screen').height;
 
-
-export default class Wishlist extends React.Component {
-  render() {
-    return (
-      <ScrollView style={{backgroundColor: 'white'}}>
-        <View style={styles.item}>
-          <Image source={Images.nag1} style={styles.itemImage} />
-          <View style={styles.itemContent}>
-            <View>
-              <Text style={styles.itemContentTitle}>Nguyễn Văn Hùng</Text>
-              <Text>Làm việc: T2-CN</Text>
-            </View>
-            <Image source={Icons.wishlist} />
-          </View>
-        </View>
-
-        <View style={styles.item}>
-          <Image source={Images.nag1} style={styles.itemImage} />
-          <View style={styles.itemContent}>
-            <View>
-              <Text style={styles.itemContentTitle}>Nguyễn Văn Hùng</Text>
-              <Text>Làm việc: T2-CN</Text>
-            </View>
-            <Image source={Icons.wishlist} />
-          </View>
-        </View>
-
-        <View style={styles.item}>
-          <Image source={Images.nag1} style={styles.itemImage} />
-          <View style={styles.itemContent}>
-            <View>
-              <Text style={styles.itemContentTitle}>Nguyễn Văn Hùng</Text>
-              <Text>Làm việc: T2-CN</Text>
-            </View>
-            <Image source={Icons.wishlist} />
-          </View>
-        </View>
-
-        <View style={styles.item}>
-          <Image source={Images.nag1} style={styles.itemImage} />
-          <View style={styles.itemContent}>
-            <View>
-              <Text style={styles.itemContentTitle}>Nguyễn Văn Hùng</Text>
-              <Text>Làm việc: T2-CN</Text>
-            </View>
-            <Image source={Icons.wishlist} />
-          </View>
-        </View>
-
-        <View style={styles.item}>
-          <Image source={Images.nag1} style={styles.itemImage} />
-          <View style={styles.itemContent}>
-            <View>
-              <Text style={styles.itemContentTitle}>Nguyễn Văn Hùng</Text>
-              <Text>Làm việc: T2-CN</Text>
-            </View>
-            <Image source={Icons.wishlist} />
-          </View>
-        </View>
-
-        <View style={styles.item}>
-          <Image source={Images.nag1} style={styles.itemImage} />
-          <View style={styles.itemContent}>
-            <View>
-              <Text style={styles.itemContentTitle}>Nguyễn Văn Hùng</Text>
-              <Text>Làm việc: T2-CN</Text>
-            </View>
-            <Image source={Icons.wishlist} />
-          </View>
-        </View>
-      </ScrollView>
-    );
-  }
-}
-Wishlist.options = {
-  topBar: {
-    title: {
-      text: 'Yêu Thích',
-      color: 'black',
-    },
-    background: {
-      color: Color.background,
-    },
-    backButton: {
-      visible: true,
-    },
-  },
+const Wishlist = () => {
+  return (
+    <ScrollView style={{ backgroundColor: 'white' }}>
+      <View>
+        <Screen404 />
+      </View>
+    </ScrollView>
+  );
 };
+export default Wishlist;
 
 const styles = StyleSheet.create({
   item: {

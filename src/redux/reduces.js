@@ -4,6 +4,9 @@ import app from './AppRedux/reducer';
 import registerReducer from './Auth/Register/reducer';
 import info from './Auth/InfoRedux/reducer';
 import homeReducer from './HomeRedux/reducer';
+import categoryReducer from './Categories/reducer';
+import bookingReducer from './BookingRedux/reducer';
+import searchReducer from './Search/reducer';
 
 const rootReducer = combineReducers({
   app,
@@ -11,6 +14,9 @@ const rootReducer = combineReducers({
   registerReducer,
   homeReducer,
   info,
+  categoryReducer,
+  bookingReducer,
+  searchReducer,
 });
 
 export default rootReducer;

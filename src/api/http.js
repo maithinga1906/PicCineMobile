@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const API_ROOT = 'https://backend-piccine.herokuapp.com/api';
 
@@ -40,37 +41,26 @@ function getHeaderAndContentType(extension) {
 }
 
 const http = {
-  setAuthorizationHeader(accessToken, language) {
-    axios.defaults.headers.Authorization = `bearer ${accessToken}`;
-    axios.defaults.headers['Accept-Language'] = language;
+  setAuthorizationHeader(token) {
+    axios.defaults.headers.Authorization = `Bearer ${token}`;
   },
 
   request(config = {}) {
     return axios.request(config);
   },
   get(url, config = {}) {
-    console.log(url);
-
     return axios.get(url, config);
   },
   post(url, data = {}, config = {}) {
-    console.log(url, data);
-
     return axios.post(url, data, config);
   },
   put(url, data = {}, config = {}) {
-    console.log(url, data);
-
     return axios.put(url, data, config);
   },
   patch(url, data = {}, config = {}) {
-    console.log(url, data);
-
     return axios.patch(url, data, config);
   },
   delete(url, config = {}) {
-    console.log(url);
-
     return axios.delete(url, config);
   },
   postUploadFile(url, data = {}) {
