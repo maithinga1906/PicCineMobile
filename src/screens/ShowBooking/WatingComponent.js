@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -25,6 +25,7 @@ const WaitingComponent = (props) => {
       },
     });
   };
+
   return (
     <View>
       <TouchableOpacity onPress={onGet}>

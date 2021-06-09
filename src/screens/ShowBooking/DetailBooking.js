@@ -1,15 +1,17 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { useDispatch } from 'react-redux';
 import Color from '../../themes/colors';
 import BookTypes from '../../redux/BookingRedux/actions';
 import { Navigation } from 'react-native-navigation';
 import { Colors } from '../../themes';
+const screenWidth = Dimensions.get('screen').width;
 
 const DetailBooking = (props) => {
   const dispatch = useDispatch();
   console.log('detail: ', props);
   console.log('id: ', props.item.id);
+  console.log('status: ', props.item.booking_status);
   const cancel = () => {
     const data = {
       booking_status: 3,
@@ -42,9 +44,13 @@ const DetailBooking = (props) => {
           </View>
         </View>
       </View>
-      <TouchableOpacity onPress={cancel} style={styles.remove}>
-        <Text style={{ color: Colors.white, fontWeight: 'bold', fontSize: 15 }}>Hủy lịch chụp</Text>
-      </TouchableOpacity>
+      {props.item.booking_status === 1 ? (
+        <TouchableOpacity onPress={cancel} style={styles.remove}>
+          <Text style={{ color: Colors.white, fontWeight: 'bold', fontSize: 15 }}>
+            Hủy lịch chụp
+          </Text>
+        </TouchableOpacity>
+      ) : null}
     </View>
   );
 };
@@ -56,12 +62,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   image: {
-    width: 80,
-    height: 80,
+    width: screenWidth / 2,
+    height: 100,
   },
-  product: {
-    flexDirection: 'row',
-  },
+
   cate: {
     justifyContent: 'space-around',
     marginLeft: 20,

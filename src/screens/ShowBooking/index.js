@@ -13,10 +13,6 @@ const ShowBooking = ({ componentId }) => {
   const [acc, setAcc] = useState(false);
   const [remove, setRemove] = useState(false);
   const [xong, setXong] = useState(false);
-  console.log('w', wait);
-  console.log('a', acc);
-  console.log('r', remove);
-  console.log('x', xong);
 
   const data = useSelector((state) => state.info.dataInfo);
   console.log('data: ', data?.id);
@@ -30,11 +26,6 @@ const ShowBooking = ({ componentId }) => {
   const accept = [];
   const cancel = [];
   const done = [];
-
-  console.log('wa', waiting);
-  console.log('aa', accept);
-  console.log('ra', cancel);
-  console.log('xa', done);
 
   for (let i = 0; i < book?.count; i++) {
     if (book.data[i].booking_status === 1) {
@@ -127,14 +118,14 @@ const ShowBooking = ({ componentId }) => {
       {acc ? (
         <View>
           {accept?.map((suggestion, index) => {
-            return <WaitingComponent componentId={componentId} item={suggestion} key={index} />;
+            return <AcceptComponent componentId={componentId} item={suggestion} key={index} />;
           })}
         </View>
       ) : null}
       {remove ? (
         <View>
           {cancel?.map((suggestion, index) => {
-            return <AcceptComponent componentId={componentId} item={suggestion} key={index} />;
+            return <CancelComponent componentId={componentId} item={suggestion} key={index} />;
           })}
         </View>
       ) : null}

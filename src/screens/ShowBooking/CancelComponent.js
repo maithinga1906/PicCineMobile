@@ -25,6 +25,7 @@ const CancelComponent = (props) => {
       },
     });
   };
+
   return (
     <View>
       <TouchableOpacity onPress={onGet}>
