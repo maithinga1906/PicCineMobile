@@ -15,12 +15,13 @@ import InputItem from '../../../component/register/inputItem';
 import Images from '../../../themes/images';
 import { registerScreen } from '../../../navigation/pushScreens';
 import Color from '../../../themes/colors';
+import Icons from '../../../themes/icons';
 const screenWidth = Dimensions.get('screen').width;
 
 const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [hidenVal] = useState(false);
+  const [hidenVal, setHidenVal] = useState(false);
 
   const dispatch = useDispatch();
   const onSignUp = () => {
@@ -54,17 +55,21 @@ const Login = (props) => {
         <Text>
           Mật khẩu <Text style={{ color: 'red' }}>*</Text>
         </Text>
-        <TouchableOpacity>
-          <Image
-            source={hidenVal ? Images.imgShowPwd : Images.imgNotShowPwd}
-            style={styles.eyeImage2}
+        <View style={styles.textInput}>
+          <TextInput
+            secureTextEntry={hidenVal}
+            onChangeText={(val) => setPassword(val)}
+            style={styles.inputText}
           />
-        </TouchableOpacity>
-        <TextInput
-          secureTextEntry={true}
-          style={styles.textInput}
-          onChangeText={(val) => setPassword(val)}
-        />
+          <TouchableOpacity
+            onPress={() => {
+              setHidenVal(!hidenVal);
+            }}
+            style={styles.eye}
+          >
+            {hidenVal ? <Image source={Icons.eye} /> : <Image source={Icons.eye} />}
+          </TouchableOpacity>
+        </View>
       </View>
       <TouchableOpacity style={styles.forgotPassButton}>
         <Text style={{ color: 'red' }}>Quên Mật Khẩu</Text>
@@ -98,7 +103,6 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     marginTop: 0,
-    marginBottom: 40,
   },
   main: {
     alignContent: 'center',
@@ -112,8 +116,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 5,
     borderRadius: 15,
-    marginBottom: 10,
     color: 'black',
+    flexDirection: 'row',
   },
   button: {
     flexDirection: 'row',
@@ -139,6 +143,8 @@ const styles = StyleSheet.create({
   },
   forgotPassButton: {
     color: 'red',
+    marginTop: 10,
+    marginBottom: 20,
   },
   closeForm: {
     width: 15,
@@ -146,10 +152,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   logo: {
-    width: 100,
-    height: 100,
+    width: 125,
+    height: 150,
   },
   logoForm: {
+    marginTop: 40,
+    marginBottom: 20,
     alignItems: 'center',
   },
   formName: {
@@ -192,6 +200,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'black',
     fontWeight: 'bold',
+  },
+  eye: {
+    marginLeft: 100,
+    marginTop: 15,
+  },
+  inputText: {
+    width: 200,
+    color: 'black',
   },
 });
 

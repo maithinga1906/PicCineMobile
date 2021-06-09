@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
   },
   detail: {
     width: screenWidth,
+    marginLeft: 20,
   },
   status: {
     alignItems: 'center',
@@ -109,6 +110,7 @@ const styles = StyleSheet.create({
   sizeTitle: {
     fontSize: 20,
     fontWeight: 'bold',
+    marginLeft: 20,
   },
   booking: {
     alignItems: 'center',

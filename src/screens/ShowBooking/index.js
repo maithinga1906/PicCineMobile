@@ -107,35 +107,36 @@ const ShowBooking = ({ componentId }) => {
           </TouchableOpacity>
         )}
       </View>
-
-      {wait ? (
-        <View>
-          {waiting?.map((suggestion, index) => {
-            return <WaitingComponent componentId={componentId} item={suggestion} key={index} />;
-          })}
-        </View>
-      ) : null}
-      {acc ? (
-        <View>
-          {accept?.map((suggestion, index) => {
-            return <AcceptComponent componentId={componentId} item={suggestion} key={index} />;
-          })}
-        </View>
-      ) : null}
-      {remove ? (
-        <View>
-          {cancel?.map((suggestion, index) => {
-            return <CancelComponent componentId={componentId} item={suggestion} key={index} />;
-          })}
-        </View>
-      ) : null}
-      {xong ? (
-        <View visible={xong}>
-          {done?.map((suggestion, index) => {
-            return <CancelComponent componentId={componentId} item={suggestion} key={index} />;
-          })}
-        </View>
-      ) : null}
+      <View style={styles.container}>
+        {wait ? (
+          <View>
+            {waiting?.map((suggestion, index) => {
+              return <WaitingComponent componentId={componentId} item={suggestion} key={index} />;
+            })}
+          </View>
+        ) : null}
+        {acc ? (
+          <View>
+            {accept?.map((suggestion, index) => {
+              return <AcceptComponent componentId={componentId} item={suggestion} key={index} />;
+            })}
+          </View>
+        ) : null}
+        {remove ? (
+          <View>
+            {cancel?.map((suggestion, index) => {
+              return <CancelComponent componentId={componentId} item={suggestion} key={index} />;
+            })}
+          </View>
+        ) : null}
+        {xong ? (
+          <View visible={xong}>
+            {done?.map((suggestion, index) => {
+              return <CancelComponent componentId={componentId} item={suggestion} key={index} />;
+            })}
+          </View>
+        ) : null}
+      </View>
     </ScrollView>
   );
 };
@@ -153,6 +154,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
     justifyContent: 'space-between',
+    marginLeft: 5,
+    marginRight: 5,
   },
   acc_qr: {
     backgroundColor: Color.background,

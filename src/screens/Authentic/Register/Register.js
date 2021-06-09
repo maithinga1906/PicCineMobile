@@ -10,7 +10,6 @@ import {
   Image,
 } from 'react-native';
 
-import { Navigation } from 'react-native-navigation';
 import InputItem from '../../../component/register/inputItem';
 import Icons from '../../../themes/icons';
 import { userRegister } from '../../../redux/Auth/Register/actions';
@@ -23,7 +22,7 @@ const SignUp = () => {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [confirm, setConfirm] = useState('');
-  const [hidenVal] = useState(false);
+  const [hidenVal, setHidenVal] = useState(false);
 
   const dispatch = useDispatch();
   const onLogin = () => {
@@ -56,28 +55,45 @@ const SignUp = () => {
         onChangeText={(val) => setUsername(val)}
       />
       <View>
-        <Text> Mật khẩu</Text>
-        <TouchableOpacity>
-          <Image source={hidenVal ? Icons.eye1 : Icons.eye} style={styles.eyeImage2} />
-        </TouchableOpacity>
-        <TextInput
-          secureTextEntry={true}
-          style={styles.textInput}
-          onChangeText={(val) => setPassword(val)}
-        />
+        <Text>
+          Mật khẩu <Text style={{ color: 'red' }}>*</Text>
+        </Text>
+        <View style={styles.textInput}>
+          <TextInput
+            secureTextEntry={hidenVal}
+            onChangeText={(val) => setPassword(val)}
+            style={styles.inputText}
+          />
+          <TouchableOpacity
+            onPress={() => {
+              setHidenVal(!hidenVal);
+            }}
+            style={styles.eye}
+          >
+            {hidenVal ? <Image source={Icons.eye} /> : <Image source={Icons.eye} />}
+          </TouchableOpacity>
+        </View>
       </View>
 
       <View>
-        <Text> Xác Nhận Mật khẩu</Text>
-        <TouchableOpacity>
-          <Image source={hidenVal ? Icons.eye1 : Icons.eye} style={styles.eyeImage2} />
-        </TouchableOpacity>
-
-        <TextInput
-          secureTextEntry={true}
-          style={styles.textInput}
-          onChangeText={(val) => setConfirm(val)}
-        />
+        <Text>
+          Xác Nhận Mật khẩu <Text style={{ color: 'red' }}>*</Text>
+        </Text>
+        <View style={styles.textInput}>
+          <TextInput
+            secureTextEntry={hidenVal}
+            onChangeText={(val) => setConfirm(val)}
+            style={styles.inputText}
+          />
+          <TouchableOpacity
+            onPress={() => {
+              setHidenVal(!hidenVal);
+            }}
+            style={styles.eye}
+          >
+            {hidenVal ? <Image source={Icons.eye} /> : <Image source={Icons.eye} />}
+          </TouchableOpacity>
+        </View>
       </View>
       <InputItem value={'Phone'} styles={styles.textInput} onChangeText={(val) => setPhone(val)} />
       <InputItem value={'Email'} styles={styles.textInput} onChangeText={(val) => setEmail(val)} />
@@ -121,8 +137,9 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     marginBottom: 5,
+    borderRadius: 15,
     color: 'black',
-    borderRadius: 10,
+    flexDirection: 'row',
   },
   button: {
     flexDirection: 'row',
@@ -206,6 +223,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'black',
     fontWeight: 'bold',
+  },
+  eye: {
+    marginLeft: 100,
+    marginTop: 15,
+  },
+  inputText: {
+    width: 200,
+    color: 'black',
   },
 });
 export default SignUp;

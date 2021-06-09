@@ -37,6 +37,7 @@ const SetSchedule = (props) => {
   const handleConfirm = (date, time) => {
     hideDatePicker();
     setStartDate(moment(date).format('YYYY MM DD'));
+    console.log('dateaaaa: ', moment(date).format('YYYY MM DD'));
   };
   const booking = () => {
     const data = {
@@ -84,6 +85,7 @@ const SetSchedule = (props) => {
             <TouchableOpacity onPress={showDatePicker}>
               <Text>Ngày chụp hình: </Text>
             </TouchableOpacity>
+            <Text>{startDate ? moment(startDate).format('DD MM, YYYY') : '-'}</Text>
             <DateTimePickerModal
               isVisible={isDatePickerVisible}
               mode="date"
@@ -91,7 +93,6 @@ const SetSchedule = (props) => {
               onCancel={hideDatePicker}
               cancelText="huy"
             />
-            <Text>{startDate ? moment(startDate).format('DD MM, YYYY') : '-'}</Text>
           </View>
         </View>
 

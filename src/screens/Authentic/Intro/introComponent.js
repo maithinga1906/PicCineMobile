@@ -27,7 +27,7 @@ const IntroComponent = (props) => {
           />
         </View>
         <View style={styles.borderText}>
-          <View>
+          <View style={{ marginTop: 30 }}>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.subTitle}>{subTitle}</Text>
           </View>
@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
   slide: {
     flex: 1,
     alignItems: 'center',
+    height: screenHeight,
   },
   borderText: {
     width: screenWidth,
@@ -67,16 +68,16 @@ const styles = StyleSheet.create({
     marginTop: 10,
     textAlign: 'center',
     fontFamily: 'SVN-ProximaNova',
-    fontSize: 16,
+    fontSize: 19,
     fontWeight: 'bold',
   },
   subTitle: {
     paddingHorizontal: 10,
     lineHeight: 27,
-    marginTop: 15,
+    marginTop: 25,
     textAlign: 'center',
     fontFamily: 'SVN-ProximaNova',
-    fontSize: 13,
+    fontSize: 15,
     color: Colors.grey,
   },
   buttonGroup: {
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     marginTop: 90,
   },
   button: {
-    //marginTop: 20,
+    marginTop: -30,
     backgroundColor: Colors.primary,
     width: 130,
     height: 40,

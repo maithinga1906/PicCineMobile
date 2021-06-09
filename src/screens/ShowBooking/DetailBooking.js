@@ -9,9 +9,7 @@ const screenWidth = Dimensions.get('screen').width;
 
 const DetailBooking = (props) => {
   const dispatch = useDispatch();
-  console.log('detail: ', props);
-  console.log('id: ', props.item.id);
-  console.log('status: ', props.item.booking_status);
+
   const cancel = () => {
     const data = {
       booking_status: 3,
@@ -26,14 +24,14 @@ const DetailBooking = (props) => {
   return (
     <View>
       <View style={styles.status}>
-        <Text>{props.status}</Text>
+        <Text style={{ marginLeft: 10 }}>{props.status}</Text>
       </View>
-      <View style={{ borderBottomColor: 'grey', borderBottomWidth: 1 }}>
+      <View style={styles.photo}>
         <Text style={styles.title}>Thông tin nhiếp anh gia</Text>
         <Text style={styles.category}>Tên: {props.item.photographer_name}</Text>
         <Text style={styles.category}>Số điện thoại: {props?.item.photographer_phone}</Text>
       </View>
-      <View>
+      <View style={styles.photo}>
         <Text style={styles.title}>Thông tin phong cách chụp bạn chọn</Text>
         <View style={styles.product}>
           <Image source={{ uri: props?.item.image }} style={styles.image} />
@@ -46,9 +44,7 @@ const DetailBooking = (props) => {
       </View>
       {props.item.booking_status === 1 ? (
         <TouchableOpacity onPress={cancel} style={styles.remove}>
-          <Text style={{ color: Colors.white, fontWeight: 'bold', fontSize: 15 }}>
-            Hủy lịch chụp
-          </Text>
+          <Text style={styles.textButton}>Hủy lịch chụp</Text>
         </TouchableOpacity>
       ) : null}
     </View>
@@ -60,15 +56,16 @@ const styles = StyleSheet.create({
   photo: {
     fontWeight: 'bold',
     marginBottom: 20,
+    marginRight: 20,
   },
   image: {
-    width: screenWidth,
+    width: screenWidth - 20,
     height: 150,
   },
 
   cate: {
     justifyContent: 'space-around',
-    marginLeft: 20,
+    marginLeft: 10,
   },
   status: {
     color: 'green',
@@ -89,5 +86,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  photo: {
+    borderBottomColor: 'grey',
+    borderBottomWidth: 1,
+    marginLeft: 10,
+  },
+  textButton: {
+    color: Colors.white,
+    fontWeight: 'bold',
+    fontSize: 15,
   },
 });

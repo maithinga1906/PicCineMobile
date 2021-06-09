@@ -46,8 +46,7 @@ const styles = StyleSheet.create({
   info: {
     borderBottomWidth: 3,
     borderBottomColor: Color.border,
-    marginBottom: 30,
-    marginTop: 20,
+    margin: 20,
   },
   tab: {
     flexDirection: 'row',

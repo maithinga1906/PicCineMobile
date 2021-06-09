@@ -43,6 +43,7 @@ const Homepage = ({ componentId }) => {
 
   const info = useSelector((state) => state.info.dataInfo);
   const recommendation = useSelector((state) => state.homeReducer.dataRecommendation);
+  const popular = useSelector((state) => state.homeReducer.dataPopular);
 
   return (
     <ScrollView style={styles.container}>
@@ -110,6 +111,9 @@ const Homepage = ({ componentId }) => {
       <ScrollView style={styles.suggestion}>
         <View style={styles.wrapView}>
           {recommendation?.map((suggestion, index) => {
+            return <HomeRecommendation componentId={componentId} item={suggestion} key={index} />;
+          })}
+          {popular?.map((suggestion, index) => {
             return <HomeRecommendation componentId={componentId} item={suggestion} key={index} />;
           })}
         </View>

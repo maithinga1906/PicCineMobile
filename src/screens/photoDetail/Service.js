@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, ScrollView, Dimensions } from 'react-native';
+import { StyleSheet, ScrollView, Dimensions, View } from 'react-native';
 import Info from './Info';
 import { useDispatch, useSelector } from 'react-redux';
 import CategoryTypes from '../../redux/Categories/actions';
@@ -15,18 +15,19 @@ const Service = (props) => {
   return (
     <ScrollView style={{ backgroundColor: 'white' }}>
       <Info item={props.item} />
-
-      {category?.map((cate, index) => {
-        return (
-          <ServiceComponent
-            style={styles.container1}
-            componentId={props.componentId}
-            item={cate}
-            key={index}
-            photographer={props.item}
-          />
-        );
-      })}
+      <View style={{ marginLeft: 20, marginRight: 20 }}>
+        {category?.map((cate, index) => {
+          return (
+            <ServiceComponent
+              style={styles.container1}
+              componentId={props.componentId}
+              item={cate}
+              key={index}
+              photographer={props.item}
+            />
+          );
+        })}
+      </View>
     </ScrollView>
   );
 };

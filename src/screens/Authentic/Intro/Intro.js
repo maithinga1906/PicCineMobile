@@ -1,5 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
 import { StyleSheet, View, SafeAreaView } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
@@ -14,21 +12,21 @@ class Intro extends Component {
         id: 1,
         imageSource: Images.intro1,
         title: 'ĐEM LẠI CÁC TRẢI NGHIỆM HÌNH ẢNH',
-        subTitle: 'Chưa Biết viết cái gì',
+        subTitle: 'Trong nhiếp ảnh, hiểu con người quan trọng hơn là hiểu máy ảnh',
         statusButton: false,
       },
       {
         id: 2,
         imageSource: Images.intro2,
         title: 'KẾT NỐI VỚI CÁC NHIẾP ẢNH GIA',
-        subTitle: 'Chưa Biết viết cái gì',
+        subTitle: 'Bạn sẽ tìm được người chụp hình có tâm',
         statusButton: false,
       },
       {
         id: 3,
         imageSource: Images.intro3,
         title: 'CHÀO MỪNG BẠN ĐẾN VỚI PICCINE',
-        subTitle: 'Chưa Biết viết cái gì',
+        subTitle: 'Nơi kết nối giữa nhiếp ảnh gia và người dùng',
         statusButton: true,
       },
     ];

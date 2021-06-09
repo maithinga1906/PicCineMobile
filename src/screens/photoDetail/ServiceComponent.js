@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { Navigation } from 'react-native-navigation';
-import { homeScreen } from '../../navigation/pushScreens';
 const screenWidth = Dimensions.get('screen').width;
 
 export const ServiceComponent = (props) => {
@@ -26,11 +25,11 @@ export const ServiceComponent = (props) => {
     });
   };
   return (
-    <TouchableOpacity style={styles.container} onPress={() => onDetail()}>
+    <TouchableOpacity onPress={() => onDetail()}>
       <Image source={{ uri: props.item.image }} style={styles.image} />
       <View style={styles.info}>
         <Text style={styles.title}>{props.item.name_style}</Text>
-        <View>
+        <View style={styles.container}>
           <Text>{props.item.price} </Text>
           <Text>{props.item.description}</Text>
         </View>
@@ -40,7 +39,7 @@ export const ServiceComponent = (props) => {
 };
 const styles = StyleSheet.create({
   image: {
-    width: screenWidth,
+    width: screenWidth - 44,
     height: 150,
   },
   info: {
@@ -50,5 +49,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  container: {
+    marginBottom: 10,
   },
 });
