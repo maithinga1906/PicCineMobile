@@ -8,8 +8,6 @@ import Register from '../screens/Authentic/Register/Register';
 import Homepage from '../screens/Home';
 import Confirm from '../screens/Authentic/ForgotPass/Confirm';
 import FillEmal from '../screens/Authentic/ForgotPass/FillEmal';
-import Payment from '../screens/Booking/Payment';
-import Transfer from '../screens/Booking/Transfer';
 import Comment from '../screens/photoDetail/Comment';
 import Info from '../screens/photoDetail/Info';
 import Service from '../screens/photoDetail/Service';
@@ -21,6 +19,7 @@ import Wishlist from '../screens/Wishlist';
 import Detail from '../screens/photoDetail/Detail';
 import SetSchedule from '../screens/Booking/SetSchedule';
 import ShowBooking from '../screens/ShowBooking';
+import DetailBooking from '../screens/ShowBooking/DetailBooking';
 
 function ReduxProvider(Component) {
   return (props) => (
@@ -71,17 +70,7 @@ export function registerScreens() {
     () => ReduxProvider(ShowBooking),
     () => ShowBooking,
   );
-  Navigation.registerComponent(
-    'Payment',
-    () => ReduxProvider(Payment),
-    () => Payment,
-  );
 
-  Navigation.registerComponent(
-    'Transfer',
-    () => ReduxProvider(Transfer),
-    () => Transfer,
-  );
   Navigation.registerComponent(
     'Comment',
     () => ReduxProvider(Comment),
@@ -126,5 +115,10 @@ export function registerScreens() {
     'SetSchedule',
     () => ReduxProvider(SetSchedule),
     () => SetSchedule,
+  );
+  Navigation.registerComponent(
+    'DetailBooking',
+    () => ReduxProvider(DetailBooking),
+    () => DetailBooking,
   );
 }

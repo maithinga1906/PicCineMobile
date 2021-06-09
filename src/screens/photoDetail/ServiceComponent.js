@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image, Dimensions } from 'react-native';
-import { Images } from '../../themes';
 import { Navigation } from 'react-native-navigation';
+import { homeScreen } from '../../navigation/pushScreens';
 const screenWidth = Dimensions.get('screen').width;
 
 export const ServiceComponent = (props) => {

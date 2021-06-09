@@ -22,6 +22,9 @@ const Header = () => {
         <TouchableOpacity style={styles.acc_qr}>
           <Text style={styles.text}>Đã hủy</Text>
         </TouchableOpacity>
+        <TouchableOpacity style={styles.acc_qr}>
+          <Text style={styles.text}>Hoàn thành</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );

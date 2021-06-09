@@ -8,6 +8,7 @@ export const INITIAL_STATE = Immutable({
   error: null,
   dataBooking: null,
   booking: null,
+  cancel: null,
 });
 
 export const showBookingSuccess = (state, { response }) =>
@@ -29,6 +30,17 @@ export const bookingSuccess = (state, { response }) =>
     booking: response.data,
   });
 export const bookingFailure = (state, { error }) => state.merge({ loading: false, error: error });
+/************************************************************* */
+
+export const cancelBooking = (state, { response }) => state.merge({ loading: true, error: null });
+
+export const cancelBookingSuccess = (state, { response }) =>
+  state.merge({
+    loading: true,
+    cancel: response.data,
+  });
+export const cancelBookingFailure = (state, { error }) =>
+  state.merge({ loading: false, error: error });
 
 const bookingReducer = makeReducerCreator(INITIAL_STATE, {
   [BookTypes.SHOW_BOONG_SUCCESS]: showBookingSuccess,
@@ -37,6 +49,10 @@ const bookingReducer = makeReducerCreator(INITIAL_STATE, {
   [BookTypes.BOOKING]: booking,
   [BookTypes.BOOKING_SUCCESS]: bookingSuccess,
   [BookTypes.BOOKING_FAILURE]: bookingFailure,
+
+  [BookTypes.CANCEL_BOOKING]: cancelBooking,
+  [BookTypes.CANCEL_BOOKING_SUCCESS]: cancelBookingSuccess,
+  [BookTypes.CANCEL_BOOKING_FAILURE]: cancelBookingSuccess,
 });
 
 export default bookingReducer;

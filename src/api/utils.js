@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import _ from 'lodash';
 import { Platform } from 'react-native';
 

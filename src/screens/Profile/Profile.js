@@ -11,29 +11,22 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import Icons from '../../themes/icons';
-const screenWidth = Dimensions.get('screen').width;
 import { useSelector, useDispatch } from 'react-redux';
 import actions from '../../redux/Auth/Login/actions';
-import InfoAction from '../../redux/Auth/InfoRedux/actions';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Color from '../../themes/colors';
 
 const Profile = () => {
   const dispatch = useDispatch();
   const onLogout = () => {
     dispatch(actions.userLogout());
   };
-  useEffect(() => {
-    dispatch(InfoAction.getInfoUser());
-  }, []);
+
   const info = useSelector((state) => state.info.dataInfo);
   return (
     <ScrollView style={{ backgroundColor: 'white' }}>
       <View style={styles.avatar}>
         <Image style={styles.img} source={{ uri: info?.avatar }} />
-        <TouchableOpacity style={styles.edit}>
-          <Image source={Icons.edit} />
-        </TouchableOpacity>
       </View>
       <View style={styles.content}>
         <View style={styles.info}>
@@ -82,13 +75,16 @@ const styles = StyleSheet.create({
   title: { fontWeight: 'bold' },
   avatar: {
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
+    backgroundColor: Color.background,
+    height: 200,
   },
   img: {
-    width: screenWidth,
-    height: 300,
+    width: 100,
+    height: 100,
     borderColor: '#F4B9A7',
-    borderWidth: 1,
+    borderWidth: 2,
+    borderRadius: 50,
   },
   logout: {
     flexDirection: 'row',

@@ -1,8 +1,9 @@
 import { takeLatest, put, call } from 'redux-saga/effects';
 import BookingActions, { BookTypes } from './actions';
-import { showBookingApi, bookApi } from '../../api/booking';
+import { showBookingApi, bookApi, cancelBookApi } from '../../api/booking';
 
 export function* showBookingSaga({ id }) {
+  console.log('aaaaa', id);
   try {
     const response = yield call(showBookingApi, id);
     yield put(BookingActions.showBookingSuccess(response.data));
@@ -20,9 +21,19 @@ export function* bookingSaga({ data }) {
   }
 }
 // =================================================
+export function* cancelBookingSaga({ id, data }) {
+  try {
+    const response = yield call(cancelBookApi, id, data);
+    console.log('response', response);
+    yield put(BookingActions.cancelBookingSuccess(response));
+  } catch (error) {
+    yield put(BookingActions.cancelBookingFailure(error));
+  }
+}
 const bookingSagas = () => [
   takeLatest(BookTypes.SHOW_BOONG, showBookingSaga),
   takeLatest(BookTypes.BOOKING, bookingSaga),
+  takeLatest(BookTypes.CANCEL_BOOKING, cancelBookingSaga),
 ];
 
 export default bookingSagas();

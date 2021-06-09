@@ -1,12 +1,33 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const WaitingComponent = (props) => {
   console.log('props', props.item.photographer_name);
+  const onGet = () => {
+    Navigation.push(props.componentId, {
+      component: {
+        name: 'DetailBooking',
+        passProps: {
+          item: props.item,
+          status: 'Chờ nhiếp ảnh gia xác nhận',
+        },
+        options: {
+          topBar: {
+            visible: true,
+            title: {
+              text: 'Chi Tiết',
+              alignment: 'center',
+            },
+          },
+        },
+      },
+    });
+  };
   return (
     <View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onGet}>
         <Text style={styles.photo}>
           <Icon name={'camera'} size={16} /> {props?.item.photographer_name}
         </Text>

@@ -15,6 +15,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { useSelector, useDispatch } from 'react-redux';
 import BookTypes from '../../redux/BookingRedux/actions';
 import moment from 'moment';
+import { Navigation } from 'react-native-navigation';
 const screenWidth = Dimensions.get('screen').width;
 
 const SetSchedule = (props) => {
@@ -50,6 +51,11 @@ const SetSchedule = (props) => {
       booking_address: add,
     };
     dispatch(BookTypes.booking(data));
+    Navigation.push(props.componentId, {
+      component: {
+        name: 'ShowBooking',
+      },
+    });
   };
   return (
     <ScrollView style={{ padding: 10 }}>
@@ -77,26 +83,37 @@ const SetSchedule = (props) => {
           <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Thời gian chụp </Text>
           <View style={{ flexDirection: 'row' }}>
             <TouchableOpacity onPress={showDatePicker}>
-              <Text>Ngày chụp hình </Text>
+              <Text>Ngày chụp hình: </Text>
             </TouchableOpacity>
             <DateTimePickerModal
               isVisible={isDatePickerVisible}
               mode="date"
               onConfirm={handleConfirm}
               onCancel={hideDatePicker}
+              cancelText="huy"
             />
-            {/* <Text>{startDate ? startDate : 'vui lòng nhập dữ liệu'}</Text> */}
+            <Text>{startDate ? moment(startDate).format('DD MM, YYYY') : '-'}</Text>
           </View>
         </View>
 
         <View>
           <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Chụp trong vòng mấy ngày </Text>
-          <TextInput type="number" style={styles.textInput} onChangeText={(val) => setDay(val)} />
+          <TextInput
+            type="number"
+            style={styles.textInput}
+            onChangeText={(val) => setDay(val)}
+            placeholder="Nhập số ngày bạn muốn thuê"
+          />
         </View>
 
         <View>
           <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Địa điểm gặp mặt </Text>
-          <TextInput type="text" style={styles.textAdd} onChangeText={(val) => setAdd(val)} />
+          <TextInput
+            type="text"
+            style={styles.textAdd}
+            onChangeText={(val) => setAdd(val)}
+            placeholder="Nhập địa chỉ gặp mặt"
+          />
         </View>
       </View>
       <View style={styles.booking}>
@@ -129,7 +146,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   textInput: {
-    width: 100,
     marginTop: 10,
     borderColor: 'gray',
     borderWidth: 1,

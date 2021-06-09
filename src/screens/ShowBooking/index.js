@@ -1,24 +1,40 @@
-/* eslint-disable react-native/no-inline-styles */
-import React, { useEffect } from 'react';
-import { Dimensions, StyleSheet, useWindowDimensions } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, TouchableOpacity, View, Text, Dimensions } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { TabView, SceneMap } from 'react-native-tab-view';
 import BookingActions from '../../redux/BookingRedux/actions';
 import WaitingComponent from './WatingComponent';
+import AcceptComponent from './AcceptComponent';
+import CancelComponent from './CancelComponent';
+import Color from '../../themes/colors';
 const screenWidth = Dimensions.get('screen').width;
-
 const ShowBooking = ({ componentId }) => {
   const dispatch = useDispatch();
+  const [wait, setWait] = useState(true);
+  const [acc, setAcc] = useState(false);
+  const [remove, setRemove] = useState(false);
+  const [xong, setXong] = useState(false);
+  console.log('w', wait);
+  console.log('a', acc);
+  console.log('r', remove);
+  console.log('x', xong);
+
   const data = useSelector((state) => state.info.dataInfo);
+  console.log('data: ', data?.id);
+
   const book = useSelector((state) => state.bookingReducer.dataBooking);
   useEffect(() => {
-    dispatch(BookingActions.showBooking(data?.id));
-  }, []);
+    data && dispatch(BookingActions.showBooking(data?.id));
+  }, [data]);
 
   const waiting = [];
   const accept = [];
   const cancel = [];
   const done = [];
+
+  console.log('wa', waiting);
+  console.log('aa', accept);
+  console.log('ra', cancel);
+  console.log('xa', done);
 
   for (let i = 0; i < book?.count; i++) {
     if (book.data[i].booking_status === 1) {
@@ -27,65 +43,131 @@ const ShowBooking = ({ componentId }) => {
     if (book.data[i].booking_status === 2) {
       accept.push(book.data[i]);
     }
-    if (book.data[i].booking_status === 3) {
+    if (book.data[i].booking_status === 3 || book.data[i].booking_status === 4) {
       cancel.push(book.data[i]);
     }
-    if (book.data[i].is_finish === true) {
+    if (book.data[i].booking_status === 2 && book.data[i].is_finish === true) {
       done.push(book.data[i]);
     }
   }
 
-  // =======================================================
-  const FirstRoute = () => {
-    waiting?.map((wait, index) => {
-      return <WaitingComponent componentId={componentId} item={wait} key={index} />;
-    });
+  const onWaiting = () => {
+    setWait(true);
+    setAcc(false);
+    setRemove(false);
+    setXong(false);
+  };
+  const onAccept = () => {
+    setWait(false);
+    setAcc(true);
+    setRemove(false);
+    setXong(false);
+  };
+  const onCancel = () => {
+    setWait(false);
+    setAcc(false);
+    setRemove(true);
+    setXong(false);
+  };
+  const onDone = () => {
+    setWait(false);
+    setAcc(false);
+    setRemove(false);
+    setXong(true);
   };
 
-  const SecondRoute = () =>
-    book?.map((wait, index) => {
-      return <WaitingComponent componentId={componentId} item={wait} key={index} />;
-    });
-
-  const layout = useWindowDimensions();
-
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-    { key: 'first', title: 'First' },
-    { key: 'second', title: 'Second' },
-  ]);
-
-  const renderScene = SceneMap({
-    first: FirstRoute,
-    second: SecondRoute,
-  });
-  // =======================================================
   return (
-    <TabView
-      navigationState={{ index, routes }}
-      renderScene={renderScene}
-      onIndexChange={setIndex}
-      initialLayout={{ width: layout.width }}
-    />
+    <ScrollView>
+      <View style={styles.content}>
+        {wait ? (
+          <TouchableOpacity style={styles.acc_qr} onPress={onWaiting}>
+            <Text style={styles.text}>Chờ xác nhận</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={onWaiting}>
+            <Text style={styles.text}>Chờ xác nhận</Text>
+          </TouchableOpacity>
+        )}
+        {acc ? (
+          <TouchableOpacity style={styles.acc_qr} onPress={onAccept}>
+            <Text style={styles.text}>Lịch chụp</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={onAccept}>
+            <Text style={styles.text}>Lịch chụp</Text>
+          </TouchableOpacity>
+        )}
+        {remove ? (
+          <TouchableOpacity style={styles.acc_qr} onPress={onCancel}>
+            <Text style={styles.text}>Đã hủy</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={onCancel}>
+            <Text style={styles.text}>Đã hủy</Text>
+          </TouchableOpacity>
+        )}
+        {xong ? (
+          <TouchableOpacity style={styles.acc_qr} onPress={onDone}>
+            <Text style={styles.text}>Hoàn thành</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={onDone}>
+            <Text style={styles.text}>Hoàn thành</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+
+      {wait ? (
+        <View>
+          {waiting?.map((suggestion, index) => {
+            return <WaitingComponent componentId={componentId} item={suggestion} key={index} />;
+          })}
+        </View>
+      ) : null}
+      {acc ? (
+        <View>
+          {accept?.map((suggestion, index) => {
+            return <WaitingComponent componentId={componentId} item={suggestion} key={index} />;
+          })}
+        </View>
+      ) : null}
+      {remove ? (
+        <View>
+          {cancel?.map((suggestion, index) => {
+            return <AcceptComponent componentId={componentId} item={suggestion} key={index} />;
+          })}
+        </View>
+      ) : null}
+      {xong ? (
+        <View visible={xong}>
+          {done?.map((suggestion, index) => {
+            return <CancelComponent componentId={componentId} item={suggestion} key={index} />;
+          })}
+        </View>
+      ) : null}
+    </ScrollView>
   );
 };
 
 export default ShowBooking;
 const styles = StyleSheet.create({
-  img: {
-    width: screenWidth / 4,
-    height: 55,
-    borderRadius: 5,
+  container: {
+    marginLeft: 20,
+    marginRight: 20,
   },
   content: {
     flexDirection: 'row',
-    fontSize: 16,
-    padding: 10,
-    borderBottomColor: '#A64244',
+    borderBottomColor: 'grey',
     borderBottomWidth: 1,
-    paddingBottom: 15,
+    alignItems: 'center',
+    marginBottom: 20,
+    justifyContent: 'space-between',
   },
-  time: {
-    opacity: 0.5,
+  acc_qr: {
+    backgroundColor: Color.background,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: screenWidth / 4,
   },
 });

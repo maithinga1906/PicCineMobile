@@ -1,27 +1,9 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable prettier/prettier */
 import React, { useEffect } from 'react';
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  Text,
-  Dimensions,
-  TouchableOpacity,
-  TextInput,
-  Image,
-} from 'react-native';
-import Images from '../../themes/images';
-import Color from '../../themes/colors';
-import Icons from '../../themes/icons';
-import Swiper from 'react-native-swiper';
+import { StyleSheet, ScrollView, Dimensions } from 'react-native';
 import Info from './Info';
-import { detailScreen } from '../../navigation/pushScreens';
 import { useDispatch, useSelector } from 'react-redux';
 import CategoryTypes from '../../redux/Categories/actions';
 import { ServiceComponent } from './ServiceComponent';
-const screenWidth = Dimensions.get('screen').width;
 
 const Service = (props) => {
   const dispatch = useDispatch();
@@ -31,12 +13,13 @@ const Service = (props) => {
 
   const category = useSelector((state) => state.categoryReducer.categories);
   return (
-    <ScrollView style={{ backgroundColor: 'white', padding: 20 }}>
+    <ScrollView style={{ backgroundColor: 'white' }}>
       <Info item={props.item} />
 
       {category?.map((cate, index) => {
         return (
           <ServiceComponent
+            style={styles.container1}
             componentId={props.componentId}
             item={cate}
             key={index}
@@ -65,5 +48,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  container1: {
+    marginLeft: 10,
+    marginRight: 10,
   },
 });

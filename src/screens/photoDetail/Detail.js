@@ -1,7 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable prettier/prettier */
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   View,
@@ -9,15 +6,10 @@ import {
   Text,
   Dimensions,
   TouchableOpacity,
-  TextInput,
   Image,
-  BackHandler,
 } from 'react-native';
-import Images from '../../themes/images';
 import Color from '../../themes/colors';
-import Icons from '../../themes/icons';
 import { Navigation } from 'react-native-navigation';
-import { Colors } from '../../themes';
 const screenWidth = Dimensions.get('screen').width;
 
 const Detail = (props) => {
@@ -42,7 +34,7 @@ const Detail = (props) => {
     });
   };
   return (
-    <ScrollView style={{ backgroundColor: 'white', padding: 20 }}>
+    <ScrollView style={{ backgroundColor: 'white' }}>
       <View style={{ alignItems: 'center' }}>
         <Image source={{ uri: props.category.image }} style={styles.image} />
 
@@ -59,6 +51,9 @@ const Detail = (props) => {
           </View>
         </View>
       </View>
+      <View>
+        <Text style={styles.sizeTitle}>Đánh giá từ khách hàng</Text>
+      </View>
       <TouchableOpacity style={styles.booking} onPress={() => onBooking()}>
         <Text style={styles.textBooking}>Đặt lịch</Text>
       </TouchableOpacity>
@@ -69,7 +64,7 @@ const Detail = (props) => {
 const styles = StyleSheet.create({
   image: {
     width: screenWidth,
-    height: screenWidth,
+    height: 200,
     borderRadius: 10,
   },
   info: {
@@ -82,12 +77,12 @@ const styles = StyleSheet.create({
   nag: {
     alignItems: 'center',
     flexDirection: 'row',
-    marginLeft: 30,
   },
   imageNag: {
     width: 60,
     height: 60,
     borderRadius: 30,
+    marginRight: 20,
   },
   nameNag: {
     fontSize: 20,
@@ -102,7 +97,6 @@ const styles = StyleSheet.create({
   },
   detail: {
     width: screenWidth,
-    backgroundColor: '#EDE7E7',
   },
   status: {
     alignItems: 'center',
@@ -122,8 +116,6 @@ const styles = StyleSheet.create({
     width: screenWidth,
     height: 50,
     backgroundColor: Color.background,
-    position: 'absolute',
-    alignSelf: 'flex-end',
   },
   textBooking: {
     fontSize: 20,

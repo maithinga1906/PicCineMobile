@@ -10,7 +10,7 @@ import {
   Dimensions,
 } from 'react-native';
 import LoginTypes from '../../../redux/Auth/Login/actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import InputItem from '../../../component/register/inputItem';
 import Images from '../../../themes/images';
 import { registerScreen } from '../../../navigation/pushScreens';
@@ -26,7 +26,7 @@ const Login = (props) => {
   const onSignUp = () => {
     registerScreen();
   };
-
+  const loading = useSelector((state) => state.login.loadingLogin);
   const onLogin = () => {
     const data = {
       username: email,
@@ -75,6 +75,7 @@ const Login = (props) => {
           <Text style={styles.titleBut}>Đăng nhập</Text>
         </TouchableOpacity>
       </View>
+      {loading}
       <View style={styles.button}>
         <Text>Chưa có tài khoản?</Text>
         <TouchableOpacity style={styles.registerButton} onPress={() => onSignUp()}>

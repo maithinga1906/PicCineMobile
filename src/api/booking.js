@@ -7,3 +7,6 @@ export async function showBookingApi(id) {
 export async function bookApi(data) {
   return http.post('/booking/store', data);
 }
+export async function cancelBookApi(id, data) {
+  return http.put(`/booking/update/${id}`, data);
+}

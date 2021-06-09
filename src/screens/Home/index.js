@@ -16,6 +16,8 @@ import HomeRecommendation from './HomeRecommendation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Slide from '../../component/Slide';
 import messaging from '@react-native-firebase/messaging';
+import InfoAction from '../../redux/Auth/InfoRedux/actions';
+
 const screenWidth = Dimensions.get('screen').width;
 
 const Homepage = ({ componentId }) => {
@@ -28,7 +30,9 @@ const Homepage = ({ componentId }) => {
 
     return unsubscribe;
   }, []);
-
+  useEffect(() => {
+    dispatch(InfoAction.getInfoUser());
+  }, []);
   useEffect(() => {
     dispatch(HomeActions.getPopularHome());
   }, []);
