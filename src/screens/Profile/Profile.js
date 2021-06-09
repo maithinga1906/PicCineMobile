@@ -15,6 +15,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import actions from '../../redux/Auth/Login/actions';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Color from '../../themes/colors';
+import { Images } from '../../themes';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -25,9 +26,15 @@ const Profile = () => {
   const info = useSelector((state) => state.info.dataInfo);
   return (
     <ScrollView style={{ backgroundColor: 'white' }}>
-      <View style={styles.avatar}>
-        <Image style={styles.img} source={{ uri: info?.avatar }} />
-      </View>
+      {info?.avatar ? (
+        <View style={styles.avatar}>
+          <Image style={styles.img} source={{ uri: info?.avatar }} />
+        </View>
+      ) : (
+        <View style={styles.avatar}>
+          <Image style={styles.img} source={Images.default} />
+        </View>
+      )}
       <View style={styles.content}>
         <View style={styles.info}>
           <Text style={styles.title}>Tên đăng nhập </Text>

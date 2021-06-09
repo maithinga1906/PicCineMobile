@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   image: {
-    width: screenWidth / 2,
-    height: 100,
+    width: screenWidth,
+    height: 150,
   },
 
   cate: {

@@ -38,7 +38,6 @@ const SetSchedule = (props) => {
     hideDatePicker();
     setStartDate(moment(date).format('YYYY MM DD'));
   };
-
   const booking = () => {
     const data = {
       id_customer: info.id,
