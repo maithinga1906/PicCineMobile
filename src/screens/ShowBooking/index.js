@@ -15,7 +15,6 @@ const ShowBooking = ({ componentId }) => {
   const [xong, setXong] = useState(false);
 
   const data = useSelector((state) => state.info.dataInfo);
-  console.log('data: ', data?.id);
 
   const book = useSelector((state) => state.bookingReducer.dataBooking);
   useEffect(() => {

@@ -3,7 +3,6 @@ import BookingActions, { BookTypes } from './actions';
 import { showBookingApi, bookApi, cancelBookApi } from '../../api/booking';
 
 export function* showBookingSaga({ id }) {
-  console.log('aaaaa', id);
   try {
     const response = yield call(showBookingApi, id);
     yield put(BookingActions.showBookingSuccess(response.data));
@@ -24,7 +23,6 @@ export function* bookingSaga({ data }) {
 export function* cancelBookingSaga({ id, data }) {
   try {
     const response = yield call(cancelBookApi, id, data);
-    console.log('response', response);
     yield put(BookingActions.cancelBookingSuccess(response));
   } catch (error) {
     yield put(BookingActions.cancelBookingFailure(error));

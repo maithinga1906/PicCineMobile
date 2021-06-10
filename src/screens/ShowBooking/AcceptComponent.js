@@ -4,7 +4,6 @@ import { Navigation } from 'react-native-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const AcceptComponent = (props) => {
-  console.log('props', props.item.photographer_name);
   const onGet = () => {
     Navigation.push(props.componentId, {
       component: {

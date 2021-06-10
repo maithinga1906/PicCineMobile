@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const WaitingComponent = (props) => {
-  console.log('props', props.item.photographer_name);
   const onGet = () => {
     Navigation.push(props.componentId, {
       component: {

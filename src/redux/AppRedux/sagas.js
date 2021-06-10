@@ -6,9 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function* startupSaga() {
   try {
-    console.log('run');
     const storeToken = yield AsyncStorage.getItem('token');
-    console.log(storeToken);
     let token = null;
     if (storeToken) {
       token = storeToken;

@@ -25,7 +25,6 @@ const SetSchedule = (props) => {
   const totalPrice = day * props.category.price;
   const info = useSelector((state) => state.info.dataInfo);
   const dispatch = useDispatch();
-  console.log('date', startDate);
   const showDatePicker = () => {
     setDatePickerVisibility(true);
   };
