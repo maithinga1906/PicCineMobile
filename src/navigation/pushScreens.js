@@ -167,7 +167,7 @@ export const homeScreen = () => {
       },
       bottomTabs: {
         visible: true,
-        animate: false,
+        animate: true,
         elevation: 10,
         titleDisplayMode: 'alwaysShow',
         preferLargeIcons: true,

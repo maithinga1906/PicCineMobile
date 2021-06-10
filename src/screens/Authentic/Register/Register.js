@@ -15,6 +15,7 @@ import Icons from '../../../themes/icons';
 import { userRegister } from '../../../redux/Auth/Register/actions';
 import { useDispatch } from 'react-redux';
 import { loginScreen } from '../../../navigation/pushScreens';
+import alertLogin from '../../../component/alertLogin';
 
 const SignUp = () => {
   const [username, setUsername] = useState('');
@@ -212,12 +213,7 @@ const styles = StyleSheet.create({
   loginButton: {
     height: 20,
     justifyContent: 'center',
-    // alignContent: 'center',
     marginLeft: 4,
-    // backgroundColor: '#1ab2ff',
-    // borderColor: '#1ab2ff',
-    // borderWidth: 1,
-    // borderRadius: 15,
   },
   titleBut: {
     textAlign: 'center',
@@ -225,10 +221,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   eye: {
-    marginLeft: 100,
+    marginLeft: 120,
     marginTop: 15,
   },
   inputText: {
+    paddingLeft: 15,
     width: 200,
     color: 'black',
   },

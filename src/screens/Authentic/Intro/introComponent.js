@@ -27,7 +27,7 @@ const IntroComponent = (props) => {
           />
         </View>
         <View style={styles.borderText}>
-          <View style={{ marginTop: 30 }}>
+          <View style={{ marginTop: 20 }}>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.subTitle}>{subTitle}</Text>
           </View>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   topSlide: {
     alignItems: 'center',
-    marginTop: 100,
+    marginTop: 50,
   },
   title: {
     paddingHorizontal: 25,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   },
   buttonGroup: {
     alignItems: 'center',
-    marginTop: 90,
+    marginTop: 50,
   },
   button: {
     marginTop: -30,

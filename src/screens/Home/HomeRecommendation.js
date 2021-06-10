@@ -21,6 +21,9 @@ const HomeRecommendation = (props) => {
               alignment: 'center',
             },
           },
+          bottomTabs: {
+            visible: false,
+          },
         },
       },
     });

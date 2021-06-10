@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import { put, call, takeLatest } from 'redux-saga/effects';
 import { userRegisterFailure, userRegisterSuccess, RegisterTypes } from './actions';
 import { startup } from '../../AppRedux/actions';

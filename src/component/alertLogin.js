@@ -1,9 +1,16 @@
 import React from 'react';
-import { StyleSheet, View, Text, Dimensions, TextInput, Image } from 'react-native';
-export const alertLogin = () => {
+import { StyleSheet, View, Text } from 'react-native';
+export const alertLogin = (content) => {
   return (
-    <View>
-      <Text>có thể bạn đã nhập sai tên đăng nhập hoặc mật khẩu</Text>
+    <View style={styles.content}>
+      <Text>{content}</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  content: {
+    width: 150,
+    height: 150,
+  },
+});

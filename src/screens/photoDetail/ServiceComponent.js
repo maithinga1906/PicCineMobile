@@ -20,6 +20,9 @@ export const ServiceComponent = (props) => {
               alignment: 'center',
             },
           },
+          bottomTabs: {
+            visible: false,
+          },
         },
       },
     });

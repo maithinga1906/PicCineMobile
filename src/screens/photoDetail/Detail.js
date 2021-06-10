@@ -29,35 +29,40 @@ const Detail = (props) => {
               alignment: 'center',
             },
           },
+          bottomTabs: {
+            visible: false,
+          },
         },
       },
     });
   };
   return (
-    <ScrollView style={{ backgroundColor: 'white' }}>
-      <View style={{ alignItems: 'center' }}>
-        <Image source={{ uri: props.category.image }} style={styles.image} />
+    <View>
+      <ScrollView style={{ backgroundColor: 'white' }}>
+        <View style={{ alignItems: 'center' }}>
+          <Image source={{ uri: props.category.image }} style={styles.image} />
 
-        <View style={styles.info}>
-          <Text style={styles.sizeTitle}>{props.category.name_style}</Text>
-          <Text style={styles.sizeText}>Giá: {props.category.price} VND</Text>
-          <Text style={styles.sizeText}>Mô tả: {props.category.description}</Text>
-        </View>
+          <View style={styles.info}>
+            <Text style={styles.sizeTitle}>{props.category.name_style}</Text>
+            <Text style={styles.sizeText}>Giá: {props.category.price} VND</Text>
+            <Text style={styles.sizeText}>Mô tả: {props.category.description}</Text>
+          </View>
 
-        <View style={styles.detail}>
-          <View style={styles.nag}>
-            <Image source={{ uri: props.photo.avatar }} style={styles.imageNag} />
-            <Text style={styles.nameNag}>{props.photo.username}</Text>
+          <View style={styles.detail}>
+            <View style={styles.nag}>
+              <Image source={{ uri: props.photo.avatar }} style={styles.imageNag} />
+              <Text style={styles.nameNag}>{props.photo.username}</Text>
+            </View>
           </View>
         </View>
-      </View>
-      <View>
-        <Text style={styles.sizeTitle}>Đánh giá từ khách hàng</Text>
-      </View>
+        <View>
+          <Text style={styles.sizeTitle}>Đánh giá từ khách hàng</Text>
+        </View>
+      </ScrollView>
       <TouchableOpacity style={styles.booking} onPress={() => onBooking()}>
         <Text style={styles.textBooking}>Đặt lịch</Text>
       </TouchableOpacity>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -113,6 +118,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
   booking: {
+    marginTop: 160,
     alignItems: 'center',
     justifyContent: 'center',
     width: screenWidth,

@@ -98,17 +98,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     backgroundColor: 'white',
     alignContent: 'center',
-    paddingTop: 100,
+    paddingTop: 50,
   },
   header: {
     flexDirection: 'row',
     marginTop: 0,
-  },
-  main: {
-    alignContent: 'center',
-    justifyContent: 'center',
-    marginTop: 20,
-    paddingVertical: 5,
   },
   textInput: {
     marginTop: 10,
@@ -146,11 +140,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 20,
   },
-  closeForm: {
-    width: 15,
-    height: 15,
-    marginTop: 20,
-  },
   logo: {
     width: 125,
     height: 150,
@@ -166,20 +155,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: '100%',
   },
-  textPolicy: {
-    fontSize: 16,
-    marginTop: 8,
-  },
-  searchSection: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
-  searchIcon: {
-    padding: 10,
-  },
   input: {
     flex: 1,
     paddingTop: 10,
@@ -189,23 +164,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     color: '#424242',
   },
-  eyeImage2: {
-    position: 'absolute',
-    width: 20,
-    height: 15,
-    marginLeft: 310,
-    marginTop: 30,
-  },
   titleBut: {
     textAlign: 'center',
     color: 'black',
     fontWeight: 'bold',
   },
   eye: {
-    marginLeft: 100,
+    marginLeft: 120,
     marginTop: 15,
   },
   inputText: {
+    paddingLeft: 15,
     width: 200,
     color: 'black',
   },

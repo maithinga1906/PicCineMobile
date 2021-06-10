@@ -21,6 +21,9 @@ const HomePopular = (props) => {
             },
           },
         },
+        bottomTabs: {
+          visible: false,
+        },
       },
     });
   };
