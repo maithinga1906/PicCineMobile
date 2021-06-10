@@ -29,16 +29,16 @@ const ShowBooking = ({ componentId }) => {
 
   for (let i = 0; i < book?.count; i++) {
     if (book.data[i].booking_status === 1) {
-      waiting.push(book.data[i]);
+      waiting.unshift(book.data[i]);
     }
     if (book.data[i].booking_status === 2) {
-      accept.push(book.data[i]);
+      accept.unshift(book.data[i]);
     }
     if (book.data[i].booking_status === 3 || book.data[i].booking_status === 4) {
-      cancel.push(book.data[i]);
+      cancel.unshift(book.data[i]);
     }
     if (book.data[i].booking_status === 2 && book.data[i].is_finish === true) {
-      done.push(book.data[i]);
+      done.unshift(book.data[i]);
     }
   }
 
