@@ -62,7 +62,10 @@ const SetSchedule = (props) => {
             <Text style={styles.title}>Nhiếp ảnh gia</Text>
             <View style={styles.nag}>
               <Image source={{ uri: props.photographer.avatar }} style={styles.imageNag} />
-              <Text style={styles.nameNag}>{props.photographer.nickname}</Text>
+              <View>
+                <Text style={styles.nameNag}>{props.photographer.nickname}</Text>
+                <Text style={styles.nameNag}>{props.photographer.address}</Text>
+              </View>
             </View>
           </View>
 
@@ -110,7 +113,7 @@ const SetSchedule = (props) => {
             <Text style={styles.title}>Địa điểm gặp mặt </Text>
             <TextInput
               type="text"
-              style={styles.textAdd}
+              style={styles.textInput}
               onChangeText={(val) => setAdd(val)}
               placeholder="Nhập địa chỉ gặp mặt"
             />
@@ -153,6 +156,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     borderRadius: 15,
     color: 'black',
+    paddingLeft: 10,
   },
   textAdd: {
     marginTop: 10,
@@ -178,7 +182,7 @@ const styles = StyleSheet.create({
   booking: {
     borderColor: Colors.border,
     flexDirection: 'row',
-    marginTop: 90,
+    marginTop: 65,
     alignItems: 'center',
     borderWidth: 1,
     justifyContent: 'center',

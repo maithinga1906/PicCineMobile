@@ -170,12 +170,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   eye: {
-    marginLeft: 120,
+    marginLeft: 100,
     marginTop: 15,
   },
   inputText: {
     paddingLeft: 15,
-    width: 200,
+    width: 170,
     color: 'black',
   },
 });

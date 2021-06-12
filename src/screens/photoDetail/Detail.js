@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
   booking: {
-    marginTop: 160,
+    marginTop: 130,
     alignItems: 'center',
     justifyContent: 'center',
     width: screenWidth,

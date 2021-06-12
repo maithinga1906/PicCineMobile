@@ -15,7 +15,6 @@ import Icons from '../../../themes/icons';
 import { userRegister } from '../../../redux/Auth/Register/actions';
 import { useDispatch } from 'react-redux';
 import { loginScreen } from '../../../navigation/pushScreens';
-import alertLogin from '../../../component/alertLogin';
 
 const SignUp = () => {
   const [username, setUsername] = useState('');
@@ -51,7 +50,7 @@ const SignUp = () => {
       </View>
 
       <InputItem
-        value={'Username'}
+        value={'Tên đăng nhập'}
         styles={styles.textInput}
         onChangeText={(val) => setUsername(val)}
       />
@@ -96,7 +95,11 @@ const SignUp = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <InputItem value={'Phone'} styles={styles.textInput} onChangeText={(val) => setPhone(val)} />
+      <InputItem
+        value={'Số điện thoại'}
+        styles={styles.textInput}
+        onChangeText={(val) => setPhone(val)}
+      />
       <InputItem value={'Email'} styles={styles.textInput} onChangeText={(val) => setEmail(val)} />
 
       <View style={styles.button}>
@@ -125,7 +128,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     marginTop: 0,
-    marginBottom: 50,
+    marginBottom: 25,
   },
   main: {
     alignContent: 'center',
@@ -221,12 +224,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   eye: {
-    marginLeft: 120,
+    marginLeft: 100,
     marginTop: 15,
   },
   inputText: {
     paddingLeft: 15,
-    width: 200,
+    width: 170,
     color: 'black',
   },
 });
